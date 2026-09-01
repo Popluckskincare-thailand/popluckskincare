@@ -96,6 +96,7 @@ a{color:inherit}
 /* ---------- layout ---------- */
 .wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
 .band{padding-block:clamp(56px,13vw,96px)}
+section[id],section[aria-labelledby]{scroll-margin-top:76px}
 .band--tint{background:var(--butter)}
 .band--deep{background:#241810;color:#F2E7D8}
 :root[data-theme="dark"] .band--deep{background:#100B07}
@@ -282,6 +283,54 @@ a{color:inherit}
 .ba__dur{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.06em;color:var(--gold-ink)}
 .ba__note{font-size:.8rem;color:var(--ink-faint);line-height:1.65;max-width:56ch}
 
+/* ---------- full ingredient list ---------- */
+.inci{margin:0;display:flex;flex-direction:column;gap:14px;align-items:center}
+.inci__frame{
+  width:100%;max-width:560px;border-radius:var(--r);overflow:hidden;line-height:0;
+  border:1px solid var(--line);box-shadow:var(--shadow);background:var(--surface);
+}
+.inci__frame img{display:block;width:100%;height:auto}
+.inci__list{width:100%;border-top:1px solid var(--line)}
+.inci__list summary{
+  display:flex;align-items:center;gap:10px;cursor:pointer;list-style:none;
+  padding:16px 0;font-weight:500;
+}
+.inci__list summary::-webkit-details-marker{display:none}
+.inci__list summary::after{content:"+";margin-left:auto;color:var(--gold);font-size:1.3rem;line-height:1;flex:none}
+.inci__list[open] summary::after{content:"\2212"}
+.inci__list p{
+  padding:0 0 18px;margin:0;font-family:"IBM Plex Mono",monospace;
+  font-size:.74rem;line-height:1.9;letter-spacing:.02em;color:var(--ink-soft);word-break:break-word;
+}
+
+/* ---------- review slider ---------- */
+.rev{margin-top:2px}
+.rev__track{
+  display:grid;grid-auto-flow:column;grid-auto-columns:86%;gap:12px;
+  overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  padding:2px 2px 4px;scrollbar-width:none;-ms-overflow-style:none;
+}
+.rev__track::-webkit-scrollbar{display:none}
+.rev__card{
+  scroll-snap-align:center;border:1px solid var(--line);border-radius:var(--r);
+  background:var(--surface);padding:clamp(18px,4.6vw,24px);
+  display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow);
+}
+.rev__quote{margin:0;flex:1;font-size:1rem;line-height:1.75;color:var(--ink)}
+.rev__who{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+.rev__nav{display:flex;align-items:center;gap:8px;margin-top:14px}
+.rev__btn{
+  width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--surface);
+  color:var(--gold-ink);display:grid;place-items:center;cursor:pointer;flex:none;
+  transition:border-color .2s ease,opacity .2s ease;
+}
+.rev__btn:hover:not([disabled]){border-color:var(--gold)}
+.rev__btn[disabled]{opacity:.3;cursor:default}
+.rev__btn svg{width:15px;height:15px}
+.rev__dots{display:flex;gap:6px;margin-left:auto;align-items:center}
+.rev__dot{width:7px;height:7px;padding:0;border:0;border-radius:99px;background:var(--petal);cursor:pointer;transition:width .25s ease,background .25s ease}
+.rev__dot[aria-current="true"]{width:22px;background:var(--gold)}
+
 /* ---------- faq ---------- */
 .faq{border-top:1px solid var(--line);margin-top:8px}
 .faq details{border-bottom:1px solid var(--line)}
@@ -314,6 +363,7 @@ a{color:inherit}
   transform:translateY(115%);transition:transform .3s ease;
 }
 .dock.is-up{transform:translateY(0)}
+@media (max-width:599px){footer{padding-bottom:86px}}
 .dock a{width:100%;padding:15px 20px}
 
 /* ---------- reveal ---------- */
@@ -325,6 +375,7 @@ a{color:inherit}
 }
 @media (min-width:600px){
   .benefits{grid-template-columns:repeat(3,1fr)}
+  .rev__track{grid-auto-columns:calc(50% - 6px)}
   .actives{grid-template-columns:1fr 1fr;column-gap:26px}
   .slots{grid-template-columns:repeat(3,1fr)}
   .dock{display:none}
@@ -445,7 +496,7 @@ a{color:inherit}
   <div class="wrap stack rv">
     <p class="eyebrow"><span lang="th">ทำไมต้อง POPLUCK</span><span lang="en">Why POPLUCK</span></p>
     <h2 id="ben-h" style="font-size:var(--fs-h2)">
-      <span lang="th">สามเหตุผลที่ผิวคุณจะรู้สึกได้</span>
+      <span lang="th">3 เหตุผลที่ผิวคุณจะรู้สึกได้</span>
       <span lang="en">Three things your skin will notice</span>
     </h2>
     <div class="benefits">
@@ -476,8 +527,8 @@ a{color:inherit}
   <div class="wrap stack rv">
     <p class="eyebrow">Multi-Brightening Complex</p>
     <h2 id="act-h" style="font-size:var(--fs-h2);color:#F6EDE0">
-      <span lang="th">6 สารกระจ่างใส ทุกตัวมีเหตุผล</span>
-      <span lang="en">Six actives, each here for a reason</span>
+      <span lang="th">6 KEY ACTIVE INGREDIENTS</span>
+      <span lang="en">6 Key Active Ingredients</span>
     </h2>
     <p class="lead"><span lang="th">แต่ละตัวทำงานคนละจุดของการเกิดเม็ดสี</span>
       <span lang="en">Each one works at a different point of pigment formation.</span></p>
@@ -510,16 +561,84 @@ a{color:inherit}
   </div>
 </section>
 
-<!-- ══════════════════ 4. SOCIAL PROOF ══════════════════ -->
+<!-- ══════════════════ 4b. FULL INGREDIENTS ══════════════════ -->
+<section class="band band--tint" aria-labelledby="inci-h">
+  <div class="wrap stack rv">
+    <p class="eyebrow">Ingredients</p>
+    <h2 id="inci-h" style="font-size:var(--fs-h2)">
+      <span lang="th">เปิดฉลากให้ดูทั้งใบ</span>
+      <span lang="en">The whole label, out in the open</span>
+    </h2>
+    <p class="lead"><span lang="th">ไม่มีอะไรต้องปิดบัง ดูส่วนผสมทุกตัวได้ตามฉลากจริง</span>
+      <span lang="en">Nothing hidden — every ingredient, exactly as printed on the label.</span></p>
+
+    <figure class="inci">
+      <div class="inci__frame">
+        <img src="assets/popluck-ingredients-list-640.webp"
+             srcset="assets/popluck-ingredients-list-640.webp 640w, assets/popluck-ingredients-list-1100.webp 1100w"
+             sizes="(min-width:600px) 560px, 92vw"
+             width="1122" height="1402" loading="lazy" decoding="async"
+             alt="ฉลากส่วนผสม POPLUCK — Water, Glycerin, Tranexamic Acid, Butylene Glycol, Alpha-Arbutin, Sodium Ascorbyl Phosphate, Sodium Hyaluronate, Panax Ginseng Root Extract, Phenylethyl Resorcinol, Undecylenoyl Phenylalanine, Allantoin, Glutathione พร้อมคุณสมบัติ Brightening, Hydrating, Skin Barrier Support, Soothing และ Antioxidant">
+      </div>
+      <details class="inci__list">
+        <summary><span lang="th">อ่านส่วนผสมแบบข้อความ (INCI)</span><span lang="en">Read the ingredient list as text (INCI)</span></summary>
+        <p>Water, Glycerin, Tranexamic Acid, Butylene Glycol, Caprylic/Capric Triglyceride, Cetyl Alcohol, Glyceryl Stearate, Alpha-Arbutin, Sodium Ascorbyl Phosphate, Fucus Vesiculosus Extract, Sodium Hyaluronate, Phenoxyethanol, Panax Ginseng Root Extract, 1,2-Hexanediol, Ethylhexylglycerin, Phenylethyl Resorcinol, Undecylenoyl Phenylalanine, Fragrance, Allantoin, Glutathione</p>
+      </details>
+    </figure>
+  </div>
+</section>
+
+<!-- ══════════════════ 5. SOCIAL PROOF ══════════════════ -->
 <section class="band" aria-labelledby="proof-h">
   <div class="wrap stack rv">
-    <p class="eyebrow"><span lang="th">ภาพจากผู้ใช้จริง</span><span lang="en">From a real customer</span></p>
+    <p class="eyebrow"><span lang="th">เสียงจากผู้ใช้จริง</span><span lang="en">From real customers</span></p>
     <h2 id="proof-h" style="font-size:var(--fs-h2)">
-      <span lang="th">ก่อน–หลัง ใช้ต่อเนื่อง 4 สัปดาห์</span>
-      <span lang="en">Before and after four weeks of daily use</span>
+      <span lang="th">รีวิวจากคนที่ลองก่อน</span>
+      <span lang="en">Reviews from people who tried it</span>
     </h2>
 
-    <!-- ⚠️ แก้ระยะเวลา "4 สัปดาห์" ให้ตรงกับที่ผู้ใช้จริงใช้ ทั้งใน h2, figcaption และ alt ของรูป -->
+    <div class="rev" role="region" aria-roledescription="carousel" aria-label="รีวิวลูกค้า">
+      <div class="rev__track" id="revTrack" tabindex="0">
+      <figure class="rev__card" role="group" aria-roledescription="slide" aria-label="รีวิวที่ 1 จาก 5">
+        <div class="stars" aria-label="ให้คะแนน 5 จาก 5 ดาว"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg></div>
+        <blockquote class="rev__quote"><span lang="th">“ครีมดี กลิ่นหอมเหมือนแป้งเด็ก ใช้แค่ 5 วันผิวเริ่มใสขึ้นกว่าเดิม”</span><span lang="en">“Lovely cream, scented like baby powder. After just five days my skin already looked brighter.”</span></blockquote>
+        <figcaption class="rev__who"><span lang="th">ลูกค้า POPLUCK</span><span lang="en">POPLUCK customer</span></figcaption>
+      </figure>
+      <figure class="rev__card" role="group" aria-roledescription="slide" aria-label="รีวิวที่ 2 จาก 5">
+        <div class="stars" aria-label="ให้คะแนน 5 จาก 5 ดาว"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg></div>
+        <blockquote class="rev__quote"><span lang="th">“คุ้มค่า เนื้อครีมดี ไม่เหนียว ถูกใจ”</span><span lang="en">“Great value. The texture is lovely and never sticky — really happy with it.”</span></blockquote>
+        <figcaption class="rev__who"><span lang="th">ลูกค้า POPLUCK</span><span lang="en">POPLUCK customer</span></figcaption>
+      </figure>
+      <figure class="rev__card" role="group" aria-roledescription="slide" aria-label="รีวิวที่ 3 จาก 5">
+        <div class="stars" aria-label="ให้คะแนน 5 จาก 5 ดาว"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg></div>
+        <blockquote class="rev__quote"><span lang="th">“กระปุกสวย ใช้งานง่ายมีช้อนให้ตักครีมไม่ต้องเลอะมือ”</span><span lang="en">“Beautiful jar, and it comes with a little spoon so you never have to dip your fingers in.”</span></blockquote>
+        <figcaption class="rev__who"><span lang="th">ลูกค้า POPLUCK</span><span lang="en">POPLUCK customer</span></figcaption>
+      </figure>
+      <figure class="rev__card" role="group" aria-roledescription="slide" aria-label="รีวิวที่ 4 จาก 5">
+        <div class="stars" aria-label="ให้คะแนน 5 จาก 5 ดาว"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg></div>
+        <blockquote class="rev__quote"><span lang="th">“ใช้ร่วมกับ Body Oil ดีมาก เห็นผลดีเลย”</span><span lang="en">“Pairs really well with a body oil — the results show.”</span></blockquote>
+        <figcaption class="rev__who"><span lang="th">ลูกค้า POPLUCK</span><span lang="en">POPLUCK customer</span></figcaption>
+      </figure>
+      <figure class="rev__card" role="group" aria-roledescription="slide" aria-label="รีวิวที่ 5 จาก 5">
+        <div class="stars" aria-label="ให้คะแนน 5 จาก 5 ดาว"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg></div>
+        <blockquote class="rev__quote"><span lang="th">“จุดด่างดำที่แขนจางลง แขนสว่างขึ้นกว่าเดิมเยอะ”</span><span lang="en">“The dark spots on my arms have faded and my arms look noticeably brighter.”</span></blockquote>
+        <figcaption class="rev__who"><span lang="th">ลูกค้า POPLUCK</span><span lang="en">POPLUCK customer</span></figcaption>
+      </figure>
+      </div>
+      <div class="rev__nav">
+        <button class="rev__btn" type="button" data-rev="prev" aria-controls="revTrack" aria-label="รีวิวก่อนหน้า">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2L4 8l6 6"/></svg></button>
+        <button class="rev__btn" type="button" data-rev="next" aria-controls="revTrack" aria-label="รีวิวถัดไป">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2l6 6-6 6"/></svg></button>
+        <div class="rev__dots"><button class="rev__dot" type="button" data-go="0" aria-current="true" aria-label="ไปที่รีวิวที่ 1"></button><button class="rev__dot" type="button" data-go="1" aria-current="false" aria-label="ไปที่รีวิวที่ 2"></button><button class="rev__dot" type="button" data-go="2" aria-current="false" aria-label="ไปที่รีวิวที่ 3"></button><button class="rev__dot" type="button" data-go="3" aria-current="false" aria-label="ไปที่รีวิวที่ 4"></button><button class="rev__dot" type="button" data-go="4" aria-current="false" aria-label="ไปที่รีวิวที่ 5"></button></div>
+      </div>
+    </div>
+
+    <!-- ⚠️ แก้ระยะเวลา "4 สัปดาห์" ให้ตรงกับที่ผู้ใช้จริงใช้ ทั้งใน h3, figcaption และ alt ของรูป -->
+    <h3 style="font-size:var(--fs-h3);margin-top:8px">
+      <span lang="th">ก่อน–หลัง ใช้ต่อเนื่อง 4 สัปดาห์</span>
+      <span lang="en">Before and after four weeks of use</span>
+    </h3>
     <figure class="ba">
       <div class="ba__frame">
         <img src="assets/popluck-before-after-760.webp"
@@ -531,21 +650,11 @@ a{color:inherit}
         <span class="ba__tag ba__tag--after"><span lang="th">หลัง</span><span lang="en">After</span></span>
       </div>
       <figcaption class="ba__meta">
-        <span class="ba__dur"><span lang="th">ใช้ต่อเนื่อง 4 สัปดาห์ · เช้าและก่อนนอน</span><span lang="en">4 weeks of continuous use · morning and night</span></span>
+        <span class="ba__dur"><span lang="th">ใช้ต่อเนื่อง 4 สัปดาห์ · วันละ 1 ครั้งก่อนนอน</span><span lang="en">4 weeks of use · once nightly</span></span>
         <span class="ba__note"><span lang="th">ภาพจากผู้ใช้จริง เผยแพร่โดยได้รับความยินยอม ผลลัพธ์ขึ้นอยู่กับสภาพผิว การใช้อย่างต่อเนื่อง และการดูแลผิวของแต่ละบุคคล POPLUCK เป็นเครื่องสำอางสำหรับบำรุงผิว ไม่ใช่ยา และไม่มีผลในการรักษาโรค</span>
           <span lang="en">Photo from a real customer, shared with permission. Results depend on skin condition, consistent use and overall skincare. POPLUCK is a cosmetic skincare product, not a medicine.</span></span>
       </figcaption>
     </figure>
-
-    <!-- ══ ช่องใส่รีวิวข้อความ: เมื่อได้รีวิวจริงแล้ว ลบ <!==> ครอบออกเพื่อเปิดใช้งาน ══
-    <div class="slots">
-      <figure class="slot" style="margin:0">
-        <div class="stars" aria-hidden="true"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg></div>
-        <blockquote class="slot__quote" style="margin:0">“ข้อความรีวิวจริง 2 บรรทัด”</blockquote>
-        <figcaption class="slot__who">ชื่อลูกค้า · อายุ · จังหวัด</figcaption>
-      </figure>
-    </div>
-    ══ จบช่องใส่รีวิว ══ -->
   </div>
 </section>
 
@@ -555,17 +664,20 @@ a{color:inherit}
     <p class="eyebrow">FAQ</p>
     <h2 id="faq-h" style="font-size:var(--fs-h2)"><span lang="th">คำถามที่พบบ่อย</span><span lang="en">Common questions</span></h2>
     <div class="faq">
-      <details open><summary><span lang="th">POPLUCK คืออะไร</span><span lang="en">What is POPLUCK?</span></summary>
-        <p><span lang="th">POPLUCK คือครีมบำรุงผิวสูตร Brightening &amp; Dark Spot Complex ที่รวมสารกระจ่างใส 6 ชนิดไว้ในเนื้อครีมเดียว สำหรับผิวที่ดูหมองคล้ำและมีสีผิวไม่สม่ำเสมอ</span>
-          <span lang="en">POPLUCK is a Brightening &amp; Dark Spot Complex cream that brings six brightening actives into one formula, for skin that looks dull and uneven.</span></p></details>
-      <details><summary><span lang="th">ในสูตรมีสารอะไรบ้าง</span><span lang="en">Which actives are inside?</span></summary>
-        <p><span lang="th">Tranexamic Acid, Alpha-Arbutin, Vitamin C Derivative, Phenylethyl Resorcinol, Undecylenoyl Phenylalanine และ Glutathione</span>
-          <span lang="en">Tranexamic Acid, Alpha-Arbutin, Vitamin C Derivative, Phenylethyl Resorcinol, Undecylenoyl Phenylalanine and Glutathione.</span></p></details>
+      <details open><summary><span lang="th">POPLUCK คืออะไร ทำไมต้องรวม 6 สารไว้ในขวดเดียว</span><span lang="en">What is POPLUCK — and why six actives in one jar?</span></summary>
+        <p><span lang="th">เพราะเม็ดสีผิวไม่ได้เกิดขึ้นในขั้นตอนเดียว การใช้สารกระจ่างใสตัวเดียวจึงมักได้ผลช้ากว่าที่หวัง POPLUCK คือครีมบำรุงผิวสูตร Brightening &amp; Dark Spot Complex ที่รวมสารกระจ่างใส 6 ชนิดซึ่งทำงานคนละจุดของกระบวนการเกิดเม็ดสี ไว้ในเนื้อครีมบางเบาเพียงขวดเดียว ดูแลทั้งจุดด่างดำเฉพาะที่และความหมองคล้ำโดยรวม โดยไม่ต้องซื้อแยกหลายขวด</span>
+          <span lang="en">Pigment isn’t made in a single step, which is why one active on its own often works slower than you’d hope. POPLUCK is a Brightening &amp; Dark Spot Complex cream that brings together six brightening actives — each working at a different point of that process — in one lightweight cream, for individual dark spots and overall dullness alike.</span></p></details>
+      <details><summary><span lang="th">ผิวแพ้ง่ายใช้ได้ไหม</span><span lang="en">Is it suitable for sensitive skin?</span></summary>
+        <p><span lang="th">ใช้ได้ POPLUCK เป็นสกินแคร์ที่มีความอ่อนโยน และผ่านการทดสอบการแพ้ก่อนจำหน่าย จึงมั่นใจได้ว่าเหมาะสำหรับผิวแพ้ง่าย หากผิวบอบบางมาก หรือกำลังใช้ยาทาเฉพาะที่อยู่ แนะนำให้ทดสอบที่ท้องแขนก่อนใช้จริง</span>
+          <span lang="en">Yes. POPLUCK is a gentle formula and is allergy-tested before it goes on sale, so it’s suitable for sensitive skin. If your skin is very reactive or you’re using a prescribed topical treatment, patch-test on your inner arm first.</span></p></details>
       <details><summary><span lang="th">ใช้ตอนไหน วันละกี่ครั้ง</span><span lang="en">When and how often do I use it?</span></summary>
-        <p><span lang="th">เนื้อครีมบางเบา ใช้ได้ทั้งเช้าและก่อนนอน หลังขั้นตอนบำรุงตามปกติ ช่วงกลางวันแนะนำให้ทาครีมกันแดดร่วมด้วย</span>
-          <span lang="en">It’s a lightweight cream you can use morning and night after your usual routine. During the day, pair it with sunscreen.</span></p></details>
-      <details><summary><span lang="th">สั่งซื้อได้อย่างไร</span><span lang="en">How do I order?</span></summary>
-        <p><span lang="th">ทักไลน์ของแบรนด์เพื่อสอบถามราคา โปรโมชั่น และสั่งซื้อได้โดยตรง ทีมงานตอบทุกวัน</span>
+        <p><span lang="th">ทาตอนเย็นหรือก่อนเข้านอน วันละ 1 ครั้ง หลังขั้นตอนบำรุงตามปกติ ช่วงกลางวันแนะนำให้ทาครีมกันแดดร่วมด้วย เพื่อไม่ให้จุดด่างดำกลับมาเข้มขึ้น</span>
+          <span lang="en">Apply once a day, in the evening or before bed, after your usual routine. During the day, pair it with sunscreen so spots don’t darken again.</span></p></details>
+      <details><summary><span lang="th">ในขวดมีส่วนผสมอะไรบ้าง</span><span lang="en">What’s actually in the jar?</span></summary>
+        <p><span lang="th">สารกระจ่างใสหลัก 6 ชนิด — Tranexamic Acid, Alpha-Arbutin, Vitamin C Derivative, Phenylethyl Resorcinol, Undecylenoyl Phenylalanine และ Glutathione — พร้อมสารบำรุงอย่าง Sodium Hyaluronate, Panax Ginseng Root Extract และ Allantoin ดูส่วนผสมทั้งฉลากได้ที่หัวข้อ Ingredients ด้านบน</span>
+          <span lang="en">Six key brightening actives — Tranexamic Acid, Alpha-Arbutin, Vitamin C Derivative, Phenylethyl Resorcinol, Undecylenoyl Phenylalanine and Glutathione — alongside Sodium Hyaluronate, Panax Ginseng Root Extract and Allantoin. The full label is in the Ingredients section above.</span></p></details>
+      <details><summary><span lang="th">สั่งซื้อยังไง ราคาเท่าไหร่</span><span lang="en">How do I order, and what does it cost?</span></summary>
+        <p><span lang="th">ทักไลน์ของแบรนด์เพื่อสอบถามราคา โปรโมชั่นที่มีอยู่ และสั่งซื้อได้โดยตรง ทีมงานตอบทุกวัน</span>
           <span lang="en">Message us on LINE for pricing, current offers and to order directly. We reply every day.</span></p></details>
     </div>
   </div>
@@ -631,9 +743,10 @@ a{color:inherit}
    {"@type":"PropertyValue","name":"Active","value":"Undecylenoyl Phenylalanine"},
    {"@type":"PropertyValue","name":"Active","value":"Glutathione"}]},
  {"@type":"FAQPage","mainEntity":[
-  {"@type":"Question","name":"POPLUCK คืออะไร","acceptedAnswer":{"@type":"Answer","text":"POPLUCK คือครีมบำรุงผิวสูตร Brightening & Dark Spot Complex ที่รวมสารกระจ่างใส 6 ชนิดไว้ในเนื้อครีมเดียว สำหรับผิวที่ดูหมองคล้ำและมีสีผิวไม่สม่ำเสมอ"}},
-  {"@type":"Question","name":"ในสูตร POPLUCK มีสารอะไรบ้าง","acceptedAnswer":{"@type":"Answer","text":"Tranexamic Acid, Alpha-Arbutin, Vitamin C Derivative, Phenylethyl Resorcinol, Undecylenoyl Phenylalanine และ Glutathione"}},
-  {"@type":"Question","name":"ใช้ POPLUCK ตอนไหน วันละกี่ครั้ง","acceptedAnswer":{"@type":"Answer","text":"เนื้อครีมบางเบา ใช้ได้ทั้งเช้าและก่อนนอน หลังขั้นตอนบำรุงตามปกติ ช่วงกลางวันแนะนำให้ทาครีมกันแดดร่วมด้วย"}},
+  {"@type":"Question","name":"POPLUCK คืออะไร ทำไมต้องรวม 6 สารไว้ในขวดเดียว","acceptedAnswer":{"@type":"Answer","text":"เพราะเม็ดสีผิวไม่ได้เกิดขึ้นในขั้นตอนเดียว การใช้สารกระจ่างใสตัวเดียวจึงมักได้ผลช้า POPLUCK คือครีมบำรุงผิวสูตร Brightening & Dark Spot Complex ที่รวมสารกระจ่างใส 6 ชนิดซึ่งทำงานคนละจุดของกระบวนการเกิดเม็ดสี ไว้ในเนื้อครีมบางเบาเพียงขวดเดียว ดูแลทั้งจุดด่างดำเฉพาะที่และความหมองคล้ำโดยรวม"}},
+  {"@type":"Question","name":"POPLUCK ผิวแพ้ง่ายใช้ได้ไหม","acceptedAnswer":{"@type":"Answer","text":"ใช้ได้ POPLUCK เป็นสกินแคร์ที่มีความอ่อนโยน และผ่านการทดสอบการแพ้ก่อนจำหน่าย จึงเหมาะสำหรับผิวแพ้ง่าย หากผิวบอบบางมากหรือกำลังใช้ยาทาเฉพาะที่ แนะนำให้ทดสอบที่ท้องแขนก่อนใช้จริง"}},
+  {"@type":"Question","name":"ใช้ POPLUCK ตอนไหน วันละกี่ครั้ง","acceptedAnswer":{"@type":"Answer","text":"ทาตอนเย็นหรือก่อนเข้านอน วันละ 1 ครั้ง หลังขั้นตอนบำรุงตามปกติ ช่วงกลางวันแนะนำให้ทาครีมกันแดดร่วมด้วย"}},
+  {"@type":"Question","name":"ในสูตร POPLUCK มีส่วนผสมอะไรบ้าง","acceptedAnswer":{"@type":"Answer","text":"สารกระจ่างใสหลัก 6 ชนิด ได้แก่ Tranexamic Acid, Alpha-Arbutin, Vitamin C Derivative (Sodium Ascorbyl Phosphate), Phenylethyl Resorcinol, Undecylenoyl Phenylalanine และ Glutathione พร้อมสารบำรุงอย่าง Sodium Hyaluronate, Panax Ginseng Root Extract และ Allantoin"}},
   {"@type":"Question","name":"สั่งซื้อ POPLUCK ได้อย่างไร","acceptedAnswer":{"@type":"Answer","text":"ทักไลน์ของแบรนด์เพื่อสอบถามราคา โปรโมชั่น และสั่งซื้อได้โดยตรง"}}]}
 ]}
 </script>
@@ -657,6 +770,31 @@ a{color:inherit}
     b.addEventListener('click',function(){setLang(b.dataset.setLang)});
   });
   setLang('th');
+
+  /* review slider */
+  (function(){
+    var track=document.getElementById('revTrack'); if(!track) return;
+    var cards=track.querySelectorAll('.rev__card');
+    var dots=[].slice.call(document.querySelectorAll('.rev__dot'));
+    var prev=document.querySelector('[data-rev="prev"]');
+    var next=document.querySelector('[data-rev="next"]');
+    function step(){ return cards.length>1 ? cards[1].offsetLeft-cards[0].offsetLeft : track.clientWidth; }
+    function index(){ return Math.round(track.scrollLeft/step()); }
+    function sync(){
+      var i=index(), max=cards.length-1;
+      dots.forEach(function(d,n){ d.setAttribute('aria-current', n===i?'true':'false'); });
+      prev.disabled = track.scrollLeft<=2;
+      next.disabled = track.scrollLeft >= track.scrollWidth-track.clientWidth-2;
+      void max;
+    }
+    function go(i){ track.scrollTo({left:i*step(),behavior:'smooth'}); }
+    prev.addEventListener('click',function(){ go(Math.max(index()-1,0)); });
+    next.addEventListener('click',function(){ go(Math.min(index()+1,cards.length-1)); });
+    dots.forEach(function(d){ d.addEventListener('click',function(){ go(+d.dataset.go); }); });
+    var t; track.addEventListener('scroll',function(){ clearTimeout(t); t=setTimeout(sync,80); },{passive:true});
+    window.addEventListener('resize',sync);
+    sync();
+  })();
 
   /* reveal */
   var io=new IntersectionObserver(function(es){
