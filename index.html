@@ -12,6 +12,7 @@
 <meta property="og:site_name" content="POPLUCK Skincare Thailand">
 <meta property="og:locale" content="th_TH">
 <meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
 <meta property="og:title" content="POPLUCK — ครีมลดจุดด่างดำ รวม 6 สารกระจ่างใส">
 <meta property="og:description" content="หนึ่งเนื้อครีม รวมสารกระจ่างใส 6 ชนิด ดูแลจุดด่างดำและผิวหมองคล้ำ อ่อนโยนพอสำหรับใช้ทุกวัน">
 <meta property="og:url" content="https://popluckskincare-thailand.github.io/popluckskincare/">
@@ -90,8 +91,10 @@ a{color:inherit}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
 
 /* ---------- language switching ---------- */
-[data-lang="th"] [lang="en"]{display:none}
-[data-lang="en"] [lang="th"]{display:none}
+[data-lang="th"] [lang="en"],[data-lang="th"] [lang="zh"]{display:none}
+[data-lang="en"] [lang="th"],[data-lang="en"] [lang="zh"]{display:none}
+[data-lang="zh"] [lang="th"],[data-lang="zh"] [lang="en"]{display:none}
+[lang="zh"],[lang="zh-Hans"]{font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC","Source Han Sans SC",system-ui,sans-serif;line-height:1.8}
 
 /* ---------- layout ---------- */
 .wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
@@ -142,7 +145,7 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
 .langs{display:flex;align-items:center;gap:2px;border:1px solid var(--line);border-radius:99px;padding:3px;background:var(--surface)}
 .langs button{
   font:500 .78rem/1 "IBM Plex Mono",monospace;letter-spacing:.06em;
-  padding:7px 11px;border:0;border-radius:99px;background:transparent;color:var(--ink-soft);cursor:pointer;
+  padding:7px 10px;border:0;border-radius:99px;background:transparent;color:var(--ink-soft);cursor:pointer;
 }
 .langs button[aria-pressed="true"]{background:var(--gold);color:#2E1F14}
 
@@ -397,6 +400,7 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
     <div class="langs" role="group" aria-label="Language / ภาษา">
       <button type="button" data-set-lang="th" aria-pressed="true">ไทย</button>
       <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-set-lang="zh" aria-pressed="false" lang="zh-Hans">中文</button>
     </div>
   </div>
 </header>
@@ -409,12 +413,12 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
 
     <h1 id="hero-h">
       <span lang="th">หนึ่งเนื้อครีม<br>รวม <em>6 สารกระจ่างใส</em></span>
-      <span lang="en">One cream.<br><em>Six brightening actives.</em></span>
+      <span lang="en">One cream.<br><em>Six brightening actives.</em></span><span lang="zh">一支面霜<br><em>六重亮白成分</em></span>
     </h1>
 
     <p class="lead">
       <span lang="th">เพราะผิวหมองคล้ำและจุดด่างดำไม่ได้เกิดจากสาเหตุเดียว POPLUCK จึงคัดสารกระจ่างใส 6 ชนิดมาไว้ในสูตรเดียว เนื้อบางเบา ใช้ได้ทุกวัน</span>
-      <span lang="en">Dullness and dark spots don’t come from one place. POPLUCK brings six carefully selected brightening actives into a single lightweight cream, gentle enough for daily use.</span>
+      <span lang="en">Dullness and dark spots don’t come from one place. POPLUCK brings six carefully selected brightening actives into a single lightweight cream, gentle enough for daily use.</span><span lang="zh">暗沉与色斑，从来不是单一原因造成的。POPLUCK 精选六种亮白成分，融进一支质地轻盈的面霜，温和到可以天天使用。</span>
     </p>
 
     <figure class="arch" style="margin:0">
@@ -426,13 +430,13 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
     <a class="btn btn--gold btn--xl" href="https://lin.ee/VAJR0cU" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 5.6 2 10.05c0 3.98 3.57 7.32 8.39 7.95.33.07.77.22.88.5.1.26.07.66.03.92l-.14.85c-.04.25-.2.98.86.53s5.7-3.36 7.78-5.75C21.2 13.5 22 11.87 22 10.05 22 5.6 17.5 2 12 2Z"/></svg>
       <span lang="th">ทักไลน์รับสิทธิ์วันนี้</span>
-      <span lang="en">Chat with us on LINE</span>
+      <span lang="en">Chat with us on LINE</span><span lang="zh">加 LINE 领取今日优惠</span>
     </a>
 
     <div class="trust">
-      <span lang="th">6 สารกระจ่างใส</span><span lang="en">6 Brightening Actives</span>
-      <span lang="th">เนื้อครีมบางเบา</span><span lang="en">Lightweight Cream</span>
-      <span lang="th">ใช้ได้ทุกวัน</span><span lang="en">Daily Use</span>
+      <span lang="th">6 สารกระจ่างใส</span><span lang="en">6 Brightening Actives</span><span lang="zh">六重亮白成分</span>
+      <span lang="th">เนื้อครีมบางเบา</span><span lang="en">Lightweight Cream</span><span lang="zh">质地轻盈</span>
+      <span lang="th">ใช้ได้ทุกวัน</span><span lang="en">Daily Use</span><span lang="zh">天天可用</span>
     </div>
   </div>
 </section>
@@ -442,22 +446,22 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
 <!-- ══════════════════ 2. PAIN POINT & SOLUTION ══════════════════ -->
 <section class="band" aria-labelledby="pain-h">
   <div class="wrap stack rv">
-    <p class="eyebrow"><span lang="th">ปัญหาที่เจอซ้ำ ๆ</span><span lang="en">The recurring problem</span></p>
+    <p class="eyebrow"><span lang="th">ปัญหาที่เจอซ้ำ ๆ</span><span lang="en">The recurring problem</span><span lang="zh">反复出现的困扰</span></p>
     <h2 id="pain-h" style="font-size:var(--fs-h2)">
       <span lang="th">ลองมาหลายตัวแล้ว<br>แต่จุดด่างดำยังอยู่ที่เดิม</span>
-      <span lang="en">You’ve tried plenty.<br>The spots are still there.</span>
+      <span lang="en">You’ve tried plenty.<br>The spots are still there.</span><span lang="zh">试过那么多，<br>色斑还留在原地</span>
     </h2>
 
     <div class="pains">
       <div class="pain"><span class="pain__q" aria-hidden="true">—</span><p>
         <span lang="th">ทาครีมมาหลายกระปุก จุดด่างดำจากสิวและแดดก็ยังจางช้า</span>
-        <span lang="en">Jar after jar, and post-acne or sun-related spots still fade slowly.</span></p></div>
+        <span lang="en">Jar after jar, and post-acne or sun-related spots still fade slowly.</span><span lang="zh">一罐接一罐地擦，痘印和晒出来的色斑还是淡得很慢。</span></p></div>
       <div class="pain"><span class="pain__q" aria-hidden="true">—</span><p>
         <span lang="th">สีผิวไม่สม่ำเสมอ ผิวดูหมอง แต่งหน้าทับก็ยังไม่เนียน</span>
-        <span lang="en">Uneven tone and dullness that makeup never quite evens out.</span></p></div>
+        <span lang="en">Uneven tone and dullness that makeup never quite evens out.</span><span lang="zh">肤色不均、看起来暗沉，上妆也盖不服帖。</span></p></div>
       <div class="pain"><span class="pain__q" aria-hidden="true">—</span><p>
         <span lang="th">เจอสูตรแรงเกินไป ผิวแสบ ลอก จนไม่กล้าใช้ต่อเนื่อง</span>
-        <span lang="en">Formulas so harsh that stinging and peeling stop you from staying consistent.</span></p></div>
+        <span lang="en">Formulas so harsh that stinging and peeling stop you from staying consistent.</span><span lang="zh">配方太刺激，刺痛、脱皮，让人不敢坚持用下去。</span></p></div>
     </div>
 
     <div class="solution">
@@ -466,26 +470,26 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
           <circle cx="14" cy="4" r="3" fill="currentColor"/><circle cx="30" cy="4" r="3" fill="currentColor"/>
           <path d="M6 10 C 6 22, 38 22, 38 10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
         </svg>
-        <p class="eyebrow" style="margin:0"><span lang="th">ทางออกของ POPLUCK</span><span lang="en">Our approach</span></p>
+        <p class="eyebrow" style="margin:0"><span lang="th">ทางออกของ POPLUCK</span><span lang="en">Our approach</span><span lang="zh">POPLUCK 的思路</span></p>
       </div>
       <h3 style="font-size:var(--fs-h3)">
         <span lang="th">เม็ดสีผิวไม่ได้เกิดในขั้นตอนเดียว การดูแลจึงไม่ควรมีแค่สารเดียว</span>
-        <span lang="en">Pigment isn’t made in one step — so one active is rarely enough.</span>
+        <span lang="en">Pigment isn’t made in one step — so one active is rarely enough.</span><span lang="zh">黑色素不是一步生成的，护理自然不该只靠一种成分</span>
       </h3>
       <div class="steps">
         <div class="step"><span class="step__n">01</span><p>
           <span lang="th"><b>การกระตุ้น</b> — แดด ความร้อน และการอักเสบจากสิว ส่งสัญญาณให้ผิวเริ่มสร้างเม็ดสี</span>
-          <span lang="en"><b>Signal</b> — sun, heat and post-acne inflammation tell skin to start making pigment.</span></p></div>
+          <span lang="en"><b>Signal</b> — sun, heat and post-acne inflammation tell skin to start making pigment.</span><span lang="zh"><b>信号</b> — 阳光、高温与痘痘发炎，通知肌肤开始制造黑色素</span></p></div>
         <div class="step"><span class="step__n">02</span><p>
           <span lang="th"><b>การสร้าง</b> — เอนไซม์ในผิวเปลี่ยนสารตั้งต้นให้กลายเป็นเม็ดสี</span>
-          <span lang="en"><b>Synthesis</b> — enzymes in the skin convert precursors into melanin.</span></p></div>
+          <span lang="en"><b>Synthesis</b> — enzymes in the skin convert precursors into melanin.</span><span lang="zh"><b>生成</b> — 肌肤中的酵素将前驱物转化为黑色素</span></p></div>
         <div class="step"><span class="step__n">03</span><p>
           <span lang="th"><b>การส่งต่อ</b> — เม็ดสีถูกส่งขึ้นสู่ผิวชั้นบน จนเห็นเป็นจุดด่างดำและผิวหมองคล้ำ</span>
-          <span lang="en"><b>Transfer</b> — pigment travels up to the surface, where it reads as spots and dullness.</span></p></div>
+          <span lang="en"><b>Transfer</b> — pigment travels up to the surface, where it reads as spots and dullness.</span><span lang="zh"><b>传递</b> — 黑色素被送往表层，显现为色斑与暗沉</span></p></div>
       </div>
       <p style="margin-top:18px;color:var(--ink-soft);font-size:.97rem">
         <span lang="th">POPLUCK จึงรวมสารกระจ่างใส <b>6 ชนิด</b> ที่ทำงานคนละจุดของกระบวนการนี้ไว้ในเนื้อครีมเดียว — ดูแลผิวหมองคล้ำและสีผิวไม่สม่ำเสมออย่างอ่อนโยน</span>
-        <span lang="en">POPLUCK combines <b>six</b> brightening actives that work at different points of that process — a gentler way to care for dull, uneven-looking skin.</span>
+        <span lang="en">POPLUCK combines <b>six</b> brightening actives that work at different points of that process — a gentler way to care for dull, uneven-looking skin.</span><span lang="zh">所以 POPLUCK 把作用于不同环节的 <b>六种</b> 亮白成分，放进同一支面霜 — 用更温和的方式，照顾暗沉与不均的肤色。</span>
       </p>
     </div>
   </div>
@@ -494,29 +498,29 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
 <!-- ══════════════════ 3. BENEFITS ══════════════════ -->
 <section class="band band--tint" aria-labelledby="ben-h">
   <div class="wrap stack rv">
-    <p class="eyebrow"><span lang="th">ทำไมต้อง POPLUCK</span><span lang="en">Why POPLUCK</span></p>
+    <p class="eyebrow"><span lang="th">ทำไมต้อง POPLUCK</span><span lang="en">Why POPLUCK</span><span lang="zh">为什么选 POPLUCK</span></p>
     <h2 id="ben-h" style="font-size:var(--fs-h2)">
       <span lang="th">3 เหตุผลที่ผิวคุณจะรู้สึกได้</span>
-      <span lang="en">Three things your skin will notice</span>
+      <span lang="en">Three things your skin will notice</span><span lang="zh">肌肤能感受到的 3 个理由</span>
     </h2>
     <div class="benefits">
       <article class="benefit">
         <span class="benefit__tag">01 · Complex</span>
-        <h3><span lang="th">ครบใน 6 สาร</span><span lang="en">Six actives, one step</span></h3>
+        <h3><span lang="th">ครบใน 6 สาร</span><span lang="en">Six actives, one step</span><span lang="zh">六种成分，一个步骤</span></h3>
         <p><span lang="th">Multi-Brightening Complex คัดสารกระจ่างใส 6 ชนิดมาไว้ในสูตรเดียว ไม่ต้องซื้อแยกหลายขวด</span>
-           <span lang="en">A Multi-Brightening Complex in a single formula — no stacking three or four bottles.</span></p>
+           <span lang="en">A Multi-Brightening Complex in a single formula — no stacking three or four bottles.</span><span lang="zh">Multi-Brightening Complex 把六种亮白成分调进同一支配方，不必再买好几瓶叠着用。</span></p>
       </article>
       <article class="benefit">
         <span class="benefit__tag">02 · Texture</span>
-        <h3><span lang="th">อ่อนโยน ใช้ได้ทุกวัน</span><span lang="en">Gentle enough for daily use</span></h3>
+        <h3><span lang="th">อ่อนโยน ใช้ได้ทุกวัน</span><span lang="en">Gentle enough for daily use</span><span lang="zh">温和到可以天天使用</span></h3>
         <p><span lang="th">เนื้อครีมบางเบา เกลี่ยง่าย ซึมไว ใช้ต่อเนื่องได้ทั้งเช้าและก่อนนอน</span>
-           <span lang="en">A lightweight cream that spreads easily and absorbs fast, morning and night.</span></p>
+           <span lang="en">A lightweight cream that spreads easily and absorbs fast, morning and night.</span><span lang="zh">质地轻盈、好推开、吸收快，早晚都能持续使用。</span></p>
       </article>
       <article class="benefit">
         <span class="benefit__tag">03 · Result</span>
-        <h3><span lang="th">ดูแลทั้งจุดและทั้งหน้า</span><span lang="en">Spots and overall tone</span></h3>
+        <h3><span lang="th">ดูแลทั้งจุดและทั้งหน้า</span><span lang="en">Spots and overall tone</span><span lang="zh">局部色斑与整体肤色</span></h3>
         <p><span lang="th">ออกแบบมาเพื่อดูแลทั้งจุดด่างดำเฉพาะที่ และความหมองคล้ำโดยรวมของผิว</span>
-           <span lang="en">Designed for individual dark spots and for the overall dullness around them.</span></p>
+           <span lang="en">Designed for individual dark spots and for the overall dullness around them.</span><span lang="zh">既照顾单独的色斑，也照顾周围整片的暗沉。</span></p>
       </article>
     </div>
   </div>
@@ -528,10 +532,10 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
     <p class="eyebrow">Multi-Brightening Complex</p>
     <h2 id="act-h" style="font-size:var(--fs-h2);color:#F6EDE0">
       <span lang="th">6 KEY ACTIVE INGREDIENTS</span>
-      <span lang="en">6 Key Active Ingredients</span>
+      <span lang="en">6 Key Active Ingredients</span><span lang="zh">6 大核心亮白成分</span>
     </h2>
     <p class="lead"><span lang="th">แต่ละตัวทำงานคนละจุดของการเกิดเม็ดสี</span>
-      <span lang="en">Each one works at a different point of pigment formation.</span></p>
+      <span lang="en">Each one works at a different point of pigment formation.</span><span lang="zh">每一种，都作用于黑色素生成的不同环节。</span></p>
 
     <figure class="ingfig">
       <div class="ingfig__frame">
@@ -541,22 +545,22 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
              width="1003" height="1568" loading="lazy" decoding="async"
              alt="อินโฟกราฟิกส่วนผสม POPLUCK 6 ชนิด — Tranexamic Acid ช่วยลดเลือนจุดด่างดำ, Alpha-Arbutin ปรับผิวให้กระจ่างใส, Vitamin C Derivative เสริมเกราะปกป้องผิว, Phenylethyl Resorcinol จัดการเม็ดสีส่วนเกิน, Undecylenoyl Phenylalanine ลดจุดด่างดำเฉพาะจุด และ Glutathione เพื่อผิวกระจ่างใสจากภายใน">
       </div>
-      <figcaption><span lang="th">ส่วนผสมทั้ง 6 ในเนื้อครีมเดียว</span><span lang="en">All six actives in one cream</span></figcaption>
+      <figcaption><span lang="th">ส่วนผสมทั้ง 6 ในเนื้อครีมเดียว</span><span lang="en">All six actives in one cream</span><span lang="zh">六种成分，同在一支面霜里</span></figcaption>
     </figure>
 
     <div class="actives">
       <div class="active"><span class="active__name">Tranexamic Acid</span><span class="active__role">
-        <span lang="en">Post-acne marks, uneven tone</span></span></div>
+        <span lang="en">Post-acne marks, uneven tone</span><span lang="zh">痘印・肤色不均</span></span></div>
       <div class="active"><span class="active__name">Alpha-Arbutin</span><span class="active__role">
-        <span lang="en">Limits excess pigment</span></span></div>
+        <span lang="en">Limits excess pigment</span><span lang="zh">抑制多余黑色素</span></span></div>
       <div class="active"><span class="active__name">Vitamin C Derivative</span><span class="active__role">
-        <span lang="en">Antioxidant, brighter look</span></span></div>
+        <span lang="en">Antioxidant, brighter look</span><span lang="zh">抗氧化・提亮肤色</span></span></div>
       <div class="active"><span class="active__name">Phenylethyl Resorcinol</span><span class="active__role">
-        <span lang="en">Targets dark spots</span></span></div>
+        <span lang="en">Targets dark spots</span><span lang="zh">针对顽固色斑</span></span></div>
       <div class="active"><span class="active__name">Undecylenoyl Phenylalanine</span><span class="active__role">
-        <span lang="en">Works at the signalling stage</span></span></div>
+        <span lang="en">Works at the signalling stage</span><span lang="zh">作用于信号阶段</span></span></div>
       <div class="active"><span class="active__name">Glutathione</span><span class="active__role">
-        <span lang="en">Antioxidant, luminous look</span></span></div>
+        <span lang="en">Antioxidant, luminous look</span><span lang="zh">抗氧化・透亮光泽</span></span></div>
     </div>
   </div>
 </section>
@@ -567,10 +571,10 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
     <p class="eyebrow">Ingredients</p>
     <h2 id="inci-h" style="font-size:var(--fs-h2)">
       <span lang="th">เปิดฉลากให้ดูทั้งใบ</span>
-      <span lang="en">The whole label, out in the open</span>
+      <span lang="en">The whole label, out in the open</span><span lang="zh">整张成分表，公开给你看</span>
     </h2>
     <p class="lead"><span lang="th">ไม่มีอะไรต้องปิดบัง ดูส่วนผสมทุกตัวได้ตามฉลากจริง</span>
-      <span lang="en">Nothing hidden — every ingredient, exactly as printed on the label.</span></p>
+      <span lang="en">Nothing hidden — every ingredient, exactly as printed on the label.</span><span lang="zh">没有什么需要隐瞒 — 每一种成分，都与瓶身标示一致。</span></p>
 
     <figure class="inci">
       <div class="inci__frame">
@@ -581,7 +585,7 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
              alt="ฉลากส่วนผสม POPLUCK — Water, Glycerin, Tranexamic Acid, Butylene Glycol, Alpha-Arbutin, Sodium Ascorbyl Phosphate, Sodium Hyaluronate, Panax Ginseng Root Extract, Phenylethyl Resorcinol, Undecylenoyl Phenylalanine, Allantoin, Glutathione พร้อมคุณสมบัติ Brightening, Hydrating, Skin Barrier Support, Soothing และ Antioxidant">
       </div>
       <details class="inci__list">
-        <summary><span lang="th">อ่านส่วนผสมแบบข้อความ (INCI)</span><span lang="en">Read the ingredient list as text (INCI)</span></summary>
+        <summary><span lang="th">อ่านส่วนผสมแบบข้อความ (INCI)</span><span lang="en">Read the ingredient list as text (INCI)</span><span lang="zh">以文字查看完整成分表（INCI）</span></summary>
         <p>Water, Glycerin, Tranexamic Acid, Butylene Glycol, Caprylic/Capric Triglyceride, Cetyl Alcohol, Glyceryl Stearate, Alpha-Arbutin, Sodium Ascorbyl Phosphate, Fucus Vesiculosus Extract, Sodium Hyaluronate, Phenoxyethanol, Panax Ginseng Root Extract, 1,2-Hexanediol, Ethylhexylglycerin, Phenylethyl Resorcinol, Undecylenoyl Phenylalanine, Fragrance, Allantoin, Glutathione</p>
       </details>
     </figure>
@@ -591,38 +595,38 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
 <!-- ══════════════════ 5. SOCIAL PROOF ══════════════════ -->
 <section class="band" aria-labelledby="proof-h">
   <div class="wrap stack rv">
-    <p class="eyebrow"><span lang="th">เสียงจากผู้ใช้จริง</span><span lang="en">From real customers</span></p>
+    <p class="eyebrow"><span lang="th">เสียงจากผู้ใช้จริง</span><span lang="en">From real customers</span><span lang="zh">来自真实顾客</span></p>
     <h2 id="proof-h" style="font-size:var(--fs-h2)">
       <span lang="th">รีวิวจากคนที่ลองก่อน</span>
-      <span lang="en">Reviews from people who tried it</span>
+      <span lang="en">Reviews from people who tried it</span><span lang="zh">先用过的人怎么说</span>
     </h2>
 
     <div class="rev" role="region" aria-roledescription="carousel" aria-label="รีวิวลูกค้า">
       <div class="rev__track" id="revTrack" tabindex="0">
       <figure class="rev__card" role="group" aria-roledescription="slide" aria-label="รีวิวที่ 1 จาก 5">
         <div class="stars" aria-label="ให้คะแนน 5 จาก 5 ดาว"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg></div>
-        <blockquote class="rev__quote"><span lang="th">“ครีมดี กลิ่นหอมเหมือนแป้งเด็ก ใช้แค่ 5 วันผิวเริ่มใสขึ้นกว่าเดิม”</span><span lang="en">“Lovely cream, scented like baby powder. After just five days my skin already looked brighter.”</span></blockquote>
-        <figcaption class="rev__who"><span lang="th">ลูกค้า POPLUCK</span><span lang="en">POPLUCK customer</span></figcaption>
+        <blockquote class="rev__quote"><span lang="th">“ครีมดี กลิ่นหอมเหมือนแป้งเด็ก ใช้แค่ 5 วันผิวเริ่มใสขึ้นกว่าเดิม”</span><span lang="en">“Lovely cream, scented like baby powder. After just five days my skin already looked brighter.”</span><span lang="zh">“霜体很好，香味像婴儿爽身粉。才用五天，皮肤就开始比以前透亮。”</span></blockquote>
+        <figcaption class="rev__who"><span lang="th">ลูกค้า POPLUCK</span><span lang="en">POPLUCK customer</span><span lang="zh">POPLUCK 顾客</span></figcaption>
       </figure>
       <figure class="rev__card" role="group" aria-roledescription="slide" aria-label="รีวิวที่ 2 จาก 5">
         <div class="stars" aria-label="ให้คะแนน 5 จาก 5 ดาว"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg></div>
-        <blockquote class="rev__quote"><span lang="th">“คุ้มค่า เนื้อครีมดี ไม่เหนียว ถูกใจ”</span><span lang="en">“Great value. The texture is lovely and never sticky — really happy with it.”</span></blockquote>
-        <figcaption class="rev__who"><span lang="th">ลูกค้า POPLUCK</span><span lang="en">POPLUCK customer</span></figcaption>
+        <blockquote class="rev__quote"><span lang="th">“คุ้มค่า เนื้อครีมดี ไม่เหนียว ถูกใจ”</span><span lang="en">“Great value. The texture is lovely and never sticky — really happy with it.”</span><span lang="zh">“很划算，霜体质地好，不黏腻，很满意。”</span></blockquote>
+        <figcaption class="rev__who"><span lang="th">ลูกค้า POPLUCK</span><span lang="en">POPLUCK customer</span><span lang="zh">POPLUCK 顾客</span></figcaption>
       </figure>
       <figure class="rev__card" role="group" aria-roledescription="slide" aria-label="รีวิวที่ 3 จาก 5">
         <div class="stars" aria-label="ให้คะแนน 5 จาก 5 ดาว"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg></div>
-        <blockquote class="rev__quote"><span lang="th">“กระปุกสวย ใช้งานง่ายมีช้อนให้ตักครีมไม่ต้องเลอะมือ”</span><span lang="en">“Beautiful jar, and it comes with a little spoon so you never have to dip your fingers in.”</span></blockquote>
-        <figcaption class="rev__who"><span lang="th">ลูกค้า POPLUCK</span><span lang="en">POPLUCK customer</span></figcaption>
+        <blockquote class="rev__quote"><span lang="th">“กระปุกสวย ใช้งานง่ายมีช้อนให้ตักครีมไม่ต้องเลอะมือ”</span><span lang="en">“Beautiful jar, and it comes with a little spoon so you never have to dip your fingers in.”</span><span lang="zh">“罐子好看，还附了小勺子挖霜，不用弄脏手。”</span></blockquote>
+        <figcaption class="rev__who"><span lang="th">ลูกค้า POPLUCK</span><span lang="en">POPLUCK customer</span><span lang="zh">POPLUCK 顾客</span></figcaption>
       </figure>
       <figure class="rev__card" role="group" aria-roledescription="slide" aria-label="รีวิวที่ 4 จาก 5">
         <div class="stars" aria-label="ให้คะแนน 5 จาก 5 ดาว"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg></div>
-        <blockquote class="rev__quote"><span lang="th">“ใช้ร่วมกับ Body Oil ดีมาก เห็นผลดีเลย”</span><span lang="en">“Pairs really well with a body oil — the results show.”</span></blockquote>
-        <figcaption class="rev__who"><span lang="th">ลูกค้า POPLUCK</span><span lang="en">POPLUCK customer</span></figcaption>
+        <blockquote class="rev__quote"><span lang="th">“ใช้ร่วมกับ Body Oil ดีมาก เห็นผลดีเลย”</span><span lang="en">“Pairs really well with a body oil — the results show.”</span><span lang="zh">“搭配身体油一起用效果很好，看得出来。”</span></blockquote>
+        <figcaption class="rev__who"><span lang="th">ลูกค้า POPLUCK</span><span lang="en">POPLUCK customer</span><span lang="zh">POPLUCK 顾客</span></figcaption>
       </figure>
       <figure class="rev__card" role="group" aria-roledescription="slide" aria-label="รีวิวที่ 5 จาก 5">
         <div class="stars" aria-label="ให้คะแนน 5 จาก 5 ดาว"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg></div>
-        <blockquote class="rev__quote"><span lang="th">“จุดด่างดำที่แขนจางลง แขนสว่างขึ้นกว่าเดิมเยอะ”</span><span lang="en">“The dark spots on my arms have faded and my arms look noticeably brighter.”</span></blockquote>
-        <figcaption class="rev__who"><span lang="th">ลูกค้า POPLUCK</span><span lang="en">POPLUCK customer</span></figcaption>
+        <blockquote class="rev__quote"><span lang="th">“จุดด่างดำที่แขนจางลง แขนสว่างขึ้นกว่าเดิมเยอะ”</span><span lang="en">“The dark spots on my arms have faded and my arms look noticeably brighter.”</span><span lang="zh">“手臂上的色斑淡了，整条手臂比以前亮了不少。”</span></blockquote>
+        <figcaption class="rev__who"><span lang="th">ลูกค้า POPLUCK</span><span lang="en">POPLUCK customer</span><span lang="zh">POPLUCK 顾客</span></figcaption>
       </figure>
       </div>
       <div class="rev__nav">
@@ -637,7 +641,7 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
     <!-- ⚠️ แก้ระยะเวลา "4 สัปดาห์" ให้ตรงกับที่ผู้ใช้จริงใช้ ทั้งใน h3, figcaption และ alt ของรูป -->
     <h3 style="font-size:var(--fs-h3);margin-top:8px">
       <span lang="th">ก่อน–หลัง ใช้ต่อเนื่อง 4 สัปดาห์</span>
-      <span lang="en">Before and after four weeks of use</span>
+      <span lang="en">Before and after four weeks of use</span><span lang="zh">持续使用四周前后对比</span>
     </h3>
     <figure class="ba">
       <div class="ba__frame">
@@ -646,13 +650,13 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
              sizes="(min-width:600px) 800px, 92vw"
              width="1200" height="800" loading="lazy" decoding="async"
              alt="ภาพเปรียบเทียบผิวแขนของผู้ใช้จริงก่อนและหลังใช้ครีม POPLUCK ต่อเนื่อง 4 สัปดาห์ ผิวดูกระจ่างใสขึ้นและสีผิวสม่ำเสมอขึ้น">
-        <span class="ba__tag ba__tag--before"><span lang="th">ก่อน</span><span lang="en">Before</span></span>
-        <span class="ba__tag ba__tag--after"><span lang="th">หลัง</span><span lang="en">After</span></span>
+        <span class="ba__tag ba__tag--before"><span lang="th">ก่อน</span><span lang="en">Before</span><span lang="zh">使用前</span></span>
+        <span class="ba__tag ba__tag--after"><span lang="th">หลัง</span><span lang="en">After</span><span lang="zh">使用后</span></span>
       </div>
       <figcaption class="ba__meta">
-        <span class="ba__dur"><span lang="th">ใช้ต่อเนื่อง 4 สัปดาห์ · วันละ 1 ครั้งก่อนนอน</span><span lang="en">4 weeks of use · once nightly</span></span>
+        <span class="ba__dur"><span lang="th">ใช้ต่อเนื่อง 4 สัปดาห์ · วันละ 1 ครั้งก่อนนอน</span><span lang="en">4 weeks of use · once nightly</span><span lang="zh">持续使用 4 周 · 每晚 1 次</span></span>
         <span class="ba__note"><span lang="th">ภาพจากผู้ใช้จริง เผยแพร่โดยได้รับความยินยอม ผลลัพธ์ขึ้นอยู่กับสภาพผิว การใช้อย่างต่อเนื่อง และการดูแลผิวของแต่ละบุคคล POPLUCK เป็นเครื่องสำอางสำหรับบำรุงผิว ไม่ใช่ยา และไม่มีผลในการรักษาโรค</span>
-          <span lang="en">Photo from a real customer, shared with permission. Results depend on skin condition, consistent use and overall skincare. POPLUCK is a cosmetic skincare product, not a medicine.</span></span>
+          <span lang="en">Photo from a real customer, shared with permission. Results depend on skin condition, consistent use and overall skincare. POPLUCK is a cosmetic skincare product, not a medicine.</span><span lang="zh">真实顾客照片，已获本人同意公开。效果因肤质、是否持续使用及日常护理而异。POPLUCK 为护肤化妆品，非药品，不具治疗疾病的作用。</span></span>
       </figcaption>
     </figure>
   </div>
@@ -662,23 +666,23 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
 <section class="band band--tint" aria-labelledby="faq-h">
   <div class="wrap stack rv">
     <p class="eyebrow">FAQ</p>
-    <h2 id="faq-h" style="font-size:var(--fs-h2)"><span lang="th">คำถามที่พบบ่อย</span><span lang="en">Common questions</span></h2>
+    <h2 id="faq-h" style="font-size:var(--fs-h2)"><span lang="th">คำถามที่พบบ่อย</span><span lang="en">Common questions</span><span lang="zh">常见问题</span></h2>
     <div class="faq">
-      <details open><summary><span lang="th">POPLUCK คืออะไร ทำไมต้องรวม 6 สารไว้ในขวดเดียว</span><span lang="en">What is POPLUCK — and why six actives in one jar?</span></summary>
+      <details open><summary><span lang="th">POPLUCK คืออะไร ทำไมต้องรวม 6 สารไว้ในขวดเดียว</span><span lang="en">What is POPLUCK — and why six actives in one jar?</span><span lang="zh">POPLUCK 是什么？为什么要把六种成分放进同一罐？</span></summary>
         <p><span lang="th">เพราะเม็ดสีผิวไม่ได้เกิดขึ้นในขั้นตอนเดียว การใช้สารกระจ่างใสตัวเดียวจึงมักได้ผลช้ากว่าที่หวัง POPLUCK คือครีมบำรุงผิวสูตร Brightening &amp; Dark Spot Complex ที่รวมสารกระจ่างใส 6 ชนิดซึ่งทำงานคนละจุดของกระบวนการเกิดเม็ดสี ไว้ในเนื้อครีมบางเบาเพียงขวดเดียว ดูแลทั้งจุดด่างดำเฉพาะที่และความหมองคล้ำโดยรวม โดยไม่ต้องซื้อแยกหลายขวด</span>
-          <span lang="en">Pigment isn’t made in a single step, which is why one active on its own often works slower than you’d hope. POPLUCK is a Brightening &amp; Dark Spot Complex cream that brings together six brightening actives — each working at a different point of that process — in one lightweight cream, for individual dark spots and overall dullness alike.</span></p></details>
-      <details><summary><span lang="th">ผิวแพ้ง่ายใช้ได้ไหม</span><span lang="en">Is it suitable for sensitive skin?</span></summary>
+          <span lang="en">Pigment isn’t made in a single step, which is why one active on its own often works slower than you’d hope. POPLUCK is a Brightening &amp; Dark Spot Complex cream that brings together six brightening actives — each working at a different point of that process — in one lightweight cream, for individual dark spots and overall dullness alike.</span><span lang="zh">黑色素不是一步生成的，所以单靠一种亮白成分，效果往往比预期来得慢。POPLUCK 是一支 Brightening &amp; Dark Spot Complex 面霜，把六种分别作用于不同环节的亮白成分融进同一支轻盈霜体，既照顾单独的色斑，也照顾整体的暗沉。</span></p></details>
+      <details><summary><span lang="th">ผิวแพ้ง่ายใช้ได้ไหม</span><span lang="en">Is it suitable for sensitive skin?</span><span lang="zh">敏感肌可以用吗？</span></summary>
         <p><span lang="th">ใช้ได้ POPLUCK เป็นสกินแคร์ที่มีความอ่อนโยน และผ่านการทดสอบการแพ้ก่อนจำหน่าย จึงมั่นใจได้ว่าเหมาะสำหรับผิวแพ้ง่าย หากผิวบอบบางมาก หรือกำลังใช้ยาทาเฉพาะที่อยู่ แนะนำให้ทดสอบที่ท้องแขนก่อนใช้จริง</span>
-          <span lang="en">Yes. POPLUCK is a gentle formula and is allergy-tested before it goes on sale, so it’s suitable for sensitive skin. If your skin is very reactive or you’re using a prescribed topical treatment, patch-test on your inner arm first.</span></p></details>
-      <details><summary><span lang="th">ใช้ตอนไหน วันละกี่ครั้ง</span><span lang="en">When and how often do I use it?</span></summary>
+          <span lang="en">Yes. POPLUCK is a gentle formula and is allergy-tested before it goes on sale, so it’s suitable for sensitive skin. If your skin is very reactive or you’re using a prescribed topical treatment, patch-test on your inner arm first.</span><span lang="zh">可以。POPLUCK 配方温和，上市前已通过过敏性测试，敏感肌也能安心使用。若肌肤特别脆弱，或正在使用医师开立的外用药，建议先在手臂内侧试用。</span></p></details>
+      <details><summary><span lang="th">ใช้ตอนไหน วันละกี่ครั้ง</span><span lang="en">When and how often do I use it?</span><span lang="zh">什么时候用？一天几次？</span></summary>
         <p><span lang="th">ทาตอนเย็นหรือก่อนเข้านอน วันละ 1 ครั้ง หลังขั้นตอนบำรุงตามปกติ ช่วงกลางวันแนะนำให้ทาครีมกันแดดร่วมด้วย เพื่อไม่ให้จุดด่างดำกลับมาเข้มขึ้น</span>
-          <span lang="en">Apply once a day, in the evening or before bed, after your usual routine. During the day, pair it with sunscreen so spots don’t darken again.</span></p></details>
-      <details><summary><span lang="th">ในขวดมีส่วนผสมอะไรบ้าง</span><span lang="en">What’s actually in the jar?</span></summary>
+          <span lang="en">Apply once a day, in the evening or before bed, after your usual routine. During the day, pair it with sunscreen so spots don’t darken again.</span><span lang="zh">每天 1 次，傍晚或睡前使用，接在平常的保养步骤之后。白天请搭配防晒，避免色斑再次加深。</span></p></details>
+      <details><summary><span lang="th">ในขวดมีส่วนผสมอะไรบ้าง</span><span lang="en">What’s actually in the jar?</span><span lang="zh">这一罐里到底有什么？</span></summary>
         <p><span lang="th">สารกระจ่างใสหลัก 6 ชนิด — Tranexamic Acid, Alpha-Arbutin, Vitamin C Derivative, Phenylethyl Resorcinol, Undecylenoyl Phenylalanine และ Glutathione — พร้อมสารบำรุงอย่าง Sodium Hyaluronate, Panax Ginseng Root Extract และ Allantoin ดูส่วนผสมทั้งฉลากได้ที่หัวข้อ Ingredients ด้านบน</span>
-          <span lang="en">Six key brightening actives — Tranexamic Acid, Alpha-Arbutin, Vitamin C Derivative, Phenylethyl Resorcinol, Undecylenoyl Phenylalanine and Glutathione — alongside Sodium Hyaluronate, Panax Ginseng Root Extract and Allantoin. The full label is in the Ingredients section above.</span></p></details>
-      <details><summary><span lang="th">สั่งซื้อยังไง ราคาเท่าไหร่</span><span lang="en">How do I order, and what does it cost?</span></summary>
+          <span lang="en">Six key brightening actives — Tranexamic Acid, Alpha-Arbutin, Vitamin C Derivative, Phenylethyl Resorcinol, Undecylenoyl Phenylalanine and Glutathione — alongside Sodium Hyaluronate, Panax Ginseng Root Extract and Allantoin. The full label is in the Ingredients section above.</span><span lang="zh">六种核心亮白成分 — Tranexamic Acid、Alpha-Arbutin、Vitamin C Derivative、Phenylethyl Resorcinol、Undecylenoyl Phenylalanine 与 Glutathione — 另外还有 Sodium Hyaluronate、Panax Ginseng Root Extract 和 Allantoin。完整成分表就在上方 Ingredients 区块。</span></p></details>
+      <details><summary><span lang="th">สั่งซื้อยังไง ราคาเท่าไหร่</span><span lang="en">How do I order, and what does it cost?</span><span lang="zh">怎么订购？价格多少？</span></summary>
         <p><span lang="th">ทักไลน์ของแบรนด์เพื่อสอบถามราคา โปรโมชั่นที่มีอยู่ และสั่งซื้อได้โดยตรง ทีมงานตอบทุกวัน</span>
-          <span lang="en">Message us on LINE for pricing, current offers and to order directly. We reply every day.</span></p></details>
+          <span lang="en">Message us on LINE for pricing, current offers and to order directly. We reply every day.</span><span lang="zh">加品牌 LINE 就能询问价格、当期优惠并直接下单，我们每天都会回复。</span></p></details>
     </div>
   </div>
 </section>
@@ -692,24 +696,24 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
     </svg>
     <p class="closing">
       <span lang="th">พบรักกับผิวของคุณอีกครั้ง<small>Find the love in your skin.</small></span>
-      <span lang="en">Find the love in your skin.<small>พบรักกับผิวของคุณอีกครั้ง</small></span>
+      <span lang="en">Find the love in your skin.<small>พบรักกับผิวของคุณอีกครั้ง</small></span><span lang="zh">重新爱上自己的肌肤<small>Find the love in your skin.</small></span>
     </p>
     <h2 id="cta-h">
       <span lang="th">ทักไลน์วันนี้<br>รับสิทธิ์พิเศษก่อนใคร</span>
-      <span lang="en">Message us today for first access</span>
+      <span lang="en">Message us today for first access</span><span lang="zh">今天就加 LINE<br>抢先拿到专属优惠</span>
     </h2>
     <p class="lead" style="max-width:34ch;margin-inline:auto">
       <span lang="th">สอบถามราคา โปรโมชั่น และวิธีใช้ที่เหมาะกับผิวคุณ ทักได้เลย ไม่มีค่าใช้จ่าย</span>
-      <span lang="en">Ask about pricing, current offers, and how to use it for your skin. Free, no obligation.</span>
+      <span lang="en">Ask about pricing, current offers, and how to use it for your skin. Free, no obligation.</span><span lang="zh">想知道价格、当期优惠，还有适合你肤质的用法？直接问我们，完全免费。</span>
     </p>
     <a class="btn btn--gold btn--xl" href="https://lin.ee/VAJR0cU" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 5.6 2 10.05c0 3.98 3.57 7.32 8.39 7.95.33.07.77.22.88.5.1.26.07.66.03.92l-.14.85c-.04.25-.2.98.86.53s5.7-3.36 7.78-5.75C21.2 13.5 22 11.87 22 10.05 22 5.6 17.5 2 12 2Z"/></svg>
       <span lang="th">ทักไลน์รับสิทธิ์ฟรีวันนี้</span>
-      <span lang="en">Get your offer on LINE</span>
+      <span lang="en">Get your offer on LINE</span><span lang="zh">加 LINE 领取今日优惠</span>
     </a>
     <p class="finenote">
       <span lang="th">POPLUCK เป็นเครื่องสำอางสำหรับบำรุงผิว ไม่ใช่ยา ไม่มีผลในการรักษาโรค ผลลัพธ์ขึ้นอยู่กับสภาพผิวของแต่ละบุคคล</span>
-      <span lang="en">POPLUCK is a cosmetic skincare product, not a medicine. Results vary from person to person.</span>
+      <span lang="en">POPLUCK is a cosmetic skincare product, not a medicine. Results vary from person to person.</span><span lang="zh">POPLUCK 为护肤化妆品，非药品，不具治疗疾病的作用。效果因个人肤质而异。</span>
     </p>
   </div>
 </section>
@@ -724,7 +728,7 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
 <div class="dock" id="dock">
   <a class="btn btn--gold" href="https://lin.ee/VAJR0cU" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 5.6 2 10.05c0 3.98 3.57 7.32 8.39 7.95.33.07.77.22.88.5.1.26.07.66.03.92l-.14.85c-.04.25-.2.98.86.53s5.7-3.36 7.78-5.75C21.2 13.5 22 11.87 22 10.05 22 5.6 17.5 2 12 2Z"/></svg>
-    <span lang="th">ทักไลน์รับสิทธิ์ฟรีวันนี้</span><span lang="en">Get your offer on LINE</span>
+    <span lang="th">ทักไลน์รับสิทธิ์ฟรีวันนี้</span><span lang="en">Get your offer on LINE</span><span lang="zh">加 LINE 领取今日优惠</span>
   </a>
 </div>
 
@@ -759,17 +763,30 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
   /* logo mask as a CSS variable so both marks share one asset */
 
   /* language */
-  function setLang(l){
+  var LANGS={th:'th',en:'en',zh:'zh-Hans'};
+  function setLang(l,push){
+    if(!LANGS[l]) l='th';
     root.setAttribute('data-lang',l);
-    root.setAttribute('lang', l==='th'?'th':'en');
+    root.setAttribute('lang', LANGS[l]);
+    try{ localStorage.setItem('poplk-lang',l); }catch(e){}
+    if(push && window.history && history.replaceState){
+      var u=new URL(location.href);
+      if(l==='th'){ u.searchParams.delete('lang'); } else { u.searchParams.set('lang',l); }
+      history.replaceState(null,'',u);
+    }
     document.querySelectorAll('[data-set-lang]').forEach(function(b){
       b.setAttribute('aria-pressed', b.dataset.setLang===l ? 'true':'false');
     });
   }
   document.querySelectorAll('[data-set-lang]').forEach(function(b){
-    b.addEventListener('click',function(){setLang(b.dataset.setLang)});
+    b.addEventListener('click',function(){setLang(b.dataset.setLang,true)});
   });
-  setLang('th');
+  var stored=null;
+  try{ stored=localStorage.getItem('poplk-lang'); }catch(e){}
+  var qs=(new URLSearchParams(location.search)).get('lang');
+  var nav=(navigator.language||'').toLowerCase();
+  var guess = qs || stored || (nav.indexOf('zh')===0 ? 'zh' : (nav.indexOf('th')===0 ? 'th' : null));
+  setLang(LANGS[guess]?guess:'th', !!qs);
 
   /* review slider */
   (function(){
