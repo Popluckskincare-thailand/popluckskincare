@@ -1,4 +1,28 @@
-<title>POPLUCK Skincare Thailand</title>
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>POPLUCK ครีมลดจุดด่างดำ รวม 6 สารกระจ่างใส | POPLUCK Skincare Thailand</title>
+<meta name="description" content="POPLUCK Brightening &amp; Dark Spot Complex ครีมบำรุงผิวที่รวมสารกระจ่างใส 6 ชนิด — Tranexamic Acid, Alpha-Arbutin, Vitamin C Derivative, Phenylethyl Resorcinol, Undecylenoyl Phenylalanine, Glutathione — ดูแลจุดด่างดำและผิวหมองคล้ำในเนื้อครีมเดียว">
+<link rel="canonical" href="https://popluckskincare-thailand.github.io/popluckskincare/">
+<meta name="theme-color" content="#C69146">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="product">
+<meta property="og:site_name" content="POPLUCK Skincare Thailand">
+<meta property="og:locale" content="th_TH">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="POPLUCK — ครีมลดจุดด่างดำ รวม 6 สารกระจ่างใส">
+<meta property="og:description" content="หนึ่งเนื้อครีม รวมสารกระจ่างใส 6 ชนิด ดูแลจุดด่างดำและผิวหมองคล้ำ อ่อนโยนพอสำหรับใช้ทุกวัน">
+<meta property="og:url" content="https://popluckskincare-thailand.github.io/popluckskincare/">
+<meta property="og:image" content="https://popluckskincare-thailand.github.io/popluckskincare/assets/popluck-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="POPLUCK Brightening &amp; Dark Spot Complex">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="POPLUCK — ครีมลดจุดด่างดำ รวม 6 สารกระจ่างใส">
+<meta name="twitter:description" content="หนึ่งเนื้อครีม รวมสารกระจ่างใส 6 ชนิด ดูแลจุดด่างดำและผิวหมองคล้ำ">
+<meta name="twitter:image" content="https://popluckskincare-thailand.github.io/popluckskincare/assets/popluck-og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -200,13 +224,15 @@ a{color:inherit}
 .benefit__tag{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink)}
 
 /* ---------- actives panel ---------- */
-.actives{display:grid;gap:0;margin-top:26px;border-top:1px solid rgba(226,177,114,.28)}
+.actives{display:grid;gap:0;margin-top:6px;border-top:1px solid rgba(226,177,114,.28)}
 .active{
   display:grid;grid-template-columns:1fr;gap:2px;
   padding:15px 0;border-bottom:1px solid rgba(226,177,114,.28);
 }
 .active__name{font-family:"IBM Plex Mono",monospace;font-size:.86rem;letter-spacing:.02em;color:#F0D6AE}
 .active__role{font-size:.92rem;color:#C0AC94;line-height:1.6}
+.active__role:empty{display:none}
+[data-lang="th"] .active{padding:11px 0}
 .count{display:flex;align-items:baseline;gap:10px;margin-top:22px}
 .count b{font-family:"Anuphan",sans-serif;font-size:2.6rem;line-height:1;color:#E2B172;font-weight:600}
 .count span{font-size:.9rem;color:#C0AC94}
@@ -225,6 +251,36 @@ a{color:inherit}
 .slots{display:grid;gap:12px;margin-top:8px}
 .stars{display:flex;gap:3px;color:var(--gold)}
 .stars svg{width:15px;height:15px}
+
+/* ---------- ingredient figure ---------- */
+.ingfig{margin:22px 0 0;display:flex;flex-direction:column;gap:14px;align-items:center}
+.ingfig__frame{
+  width:100%;max-width:500px;border-radius:var(--r);overflow:hidden;line-height:0;
+  border:1px solid rgba(226,177,114,.32);box-shadow:0 30px 64px -34px rgba(0,0,0,.85);
+}
+.ingfig__frame img{display:block;width:100%;height:auto}
+.ingfig figcaption{
+  font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.1em;
+  text-transform:uppercase;color:#B69B7C;text-align:center;
+}
+
+/* ---------- before / after ---------- */
+.ba{margin:0;display:flex;flex-direction:column;gap:12px}
+.ba__frame{
+  position:relative;border-radius:var(--r);overflow:hidden;line-height:0;
+  border:1px solid var(--line);background:var(--gold-wash);
+}
+.ba__frame img{display:block;width:100%;height:auto}
+.ba__tag{
+  position:absolute;top:12px;line-height:1;padding:5px 11px;border-radius:99px;
+  font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.12em;
+  text-transform:uppercase;color:#F6EDE0;background:rgba(24,16,10,.62);
+}
+.ba__tag--before{left:12px}
+.ba__tag--after{right:12px}
+.ba__meta{display:flex;flex-direction:column;gap:8px}
+.ba__dur{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.06em;color:var(--gold-ink)}
+.ba__note{font-size:.8rem;color:var(--ink-faint);line-height:1.65;max-width:56ch}
 
 /* ---------- faq ---------- */
 .faq{border-top:1px solid var(--line);margin-top:8px}
@@ -279,6 +335,9 @@ a{color:inherit}
   .arc path{stroke-dashoffset:0}
 }
 </style>
+
+</head>
+<body>
 
 <!-- ══════════════════ HEADER ══════════════════ -->
 <header class="topbar">
@@ -417,30 +476,36 @@ a{color:inherit}
   <div class="wrap stack rv">
     <p class="eyebrow">Multi-Brightening Complex</p>
     <h2 id="act-h" style="font-size:var(--fs-h2);color:#F6EDE0">
-      <span lang="th">ส่วนผสมที่คัดมาแล้ว ทุกตัวมีเหตุผล</span>
-      <span lang="en">Every active is here for a reason</span>
+      <span lang="th">6 สารกระจ่างใส ทุกตัวมีเหตุผล</span>
+      <span lang="en">Six actives, each here for a reason</span>
     </h2>
-    <p class="lead"><span lang="th">คัดสรรสารกระจ่างใสที่ทำงานคนละจุด เพื่อดูแลผิวที่ดูหมองคล้ำและสีผิวไม่สม่ำเสมอ</span>
-      <span lang="en">Carefully selected brightening actives designed to care for dull and uneven-looking skin.</span></p>
+    <p class="lead"><span lang="th">แต่ละตัวทำงานคนละจุดของการเกิดเม็ดสี</span>
+      <span lang="en">Each one works at a different point of pigment formation.</span></p>
+
+    <figure class="ingfig">
+      <div class="ingfig__frame">
+        <img src="assets/popluck-ingredients-th-560.webp"
+             srcset="assets/popluck-ingredients-th-560.webp 560w, assets/popluck-ingredients-th-1003.webp 1003w"
+             sizes="(min-width:600px) 500px, 92vw"
+             width="1003" height="1568" loading="lazy" decoding="async"
+             alt="อินโฟกราฟิกส่วนผสม POPLUCK 6 ชนิด — Tranexamic Acid ช่วยลดเลือนจุดด่างดำ, Alpha-Arbutin ปรับผิวให้กระจ่างใส, Vitamin C Derivative เสริมเกราะปกป้องผิว, Phenylethyl Resorcinol จัดการเม็ดสีส่วนเกิน, Undecylenoyl Phenylalanine ลดจุดด่างดำเฉพาะจุด และ Glutathione เพื่อผิวกระจ่างใสจากภายใน">
+      </div>
+      <figcaption><span lang="th">ส่วนผสมทั้ง 6 ในเนื้อครีมเดียว</span><span lang="en">All six actives in one cream</span></figcaption>
+    </figure>
 
     <div class="actives">
       <div class="active"><span class="active__name">Tranexamic Acid</span><span class="active__role">
-        <span lang="th">ดูแลรอยดำจากสิวและสีผิวที่ไม่สม่ำเสมอ</span><span lang="en">For post-acne marks and uneven tone</span></span></div>
+        <span lang="en">Post-acne marks, uneven tone</span></span></div>
       <div class="active"><span class="active__name">Alpha-Arbutin</span><span class="active__role">
-        <span lang="th">ช่วยลดการสร้างเม็ดสีส่วนเกิน</span><span lang="en">Helps limit excess pigment formation</span></span></div>
+        <span lang="en">Limits excess pigment</span></span></div>
       <div class="active"><span class="active__name">Vitamin C Derivative</span><span class="active__role">
-        <span lang="th">สารต้านอนุมูลอิสระ เพื่อผิวดูกระจ่าง</span><span lang="en">Antioxidant support for a brighter look</span></span></div>
+        <span lang="en">Antioxidant, brighter look</span></span></div>
       <div class="active"><span class="active__name">Phenylethyl Resorcinol</span><span class="active__role">
-        <span lang="th">สารกระจ่างใสที่ออกฤทธิ์ตรงจุด</span><span lang="en">A targeted brightening active</span></span></div>
+        <span lang="en">Targets dark spots</span></span></div>
       <div class="active"><span class="active__name">Undecylenoyl Phenylalanine</span><span class="active__role">
-        <span lang="th">ดูแลเม็ดสีตั้งแต่ขั้นการกระตุ้น</span><span lang="en">Works at the signalling stage</span></span></div>
+        <span lang="en">Works at the signalling stage</span></span></div>
       <div class="active"><span class="active__name">Glutathione</span><span class="active__role">
-        <span lang="th">สารต้านอนุมูลอิสระ เพื่อผิวดูสว่างสดใส</span><span lang="en">Antioxidant for a fresh, luminous look</span></span></div>
-    </div>
-
-    <div class="count">
-      <b>6</b>
-      <span><span lang="th">สารกระจ่างใส ในเนื้อครีมเดียว</span><span lang="en">brightening actives in one cream</span></span>
+        <span lang="en">Antioxidant, luminous look</span></span></div>
     </div>
   </div>
 </section>
@@ -448,41 +513,39 @@ a{color:inherit}
 <!-- ══════════════════ 4. SOCIAL PROOF ══════════════════ -->
 <section class="band" aria-labelledby="proof-h">
   <div class="wrap stack rv">
-    <p class="eyebrow"><span lang="th">เสียงจากผู้ใช้จริง</span><span lang="en">From real customers</span></p>
+    <p class="eyebrow"><span lang="th">ภาพจากผู้ใช้จริง</span><span lang="en">From a real customer</span></p>
     <h2 id="proof-h" style="font-size:var(--fs-h2)">
-      <span lang="th">รีวิวจากคนที่ลองก่อน</span>
-      <span lang="en">Reviews from people who tried it</span>
+      <span lang="th">ก่อน–หลัง ใช้ต่อเนื่อง 4 สัปดาห์</span>
+      <span lang="en">Before and after four weeks of daily use</span>
     </h2>
-    <p class="lead"><span lang="th">ช่องด้านล่างเตรียมไว้สำหรับรีวิวจริงของลูกค้า — แทนที่ข้อความและใส่ชื่อผู้รีวิวได้เลย</span>
-      <span lang="en">These slots are ready for your real customer reviews — replace the text and names below.</span></p>
 
+    <!-- ⚠️ แก้ระยะเวลา "4 สัปดาห์" ให้ตรงกับที่ผู้ใช้จริงใช้ ทั้งใน h2, figcaption และ alt ของรูป -->
+    <figure class="ba">
+      <div class="ba__frame">
+        <img src="assets/popluck-before-after-760.webp"
+             srcset="assets/popluck-before-after-760.webp 760w, assets/popluck-before-after-1200.webp 1200w"
+             sizes="(min-width:600px) 800px, 92vw"
+             width="1200" height="800" loading="lazy" decoding="async"
+             alt="ภาพเปรียบเทียบผิวแขนของผู้ใช้จริงก่อนและหลังใช้ครีม POPLUCK ต่อเนื่อง 4 สัปดาห์ ผิวดูกระจ่างใสขึ้นและสีผิวสม่ำเสมอขึ้น">
+        <span class="ba__tag ba__tag--before"><span lang="th">ก่อน</span><span lang="en">Before</span></span>
+        <span class="ba__tag ba__tag--after"><span lang="th">หลัง</span><span lang="en">After</span></span>
+      </div>
+      <figcaption class="ba__meta">
+        <span class="ba__dur"><span lang="th">ใช้ต่อเนื่อง 4 สัปดาห์ · เช้าและก่อนนอน</span><span lang="en">4 weeks of continuous use · morning and night</span></span>
+        <span class="ba__note"><span lang="th">ภาพจากผู้ใช้จริง เผยแพร่โดยได้รับความยินยอม ผลลัพธ์ขึ้นอยู่กับสภาพผิว การใช้อย่างต่อเนื่อง และการดูแลผิวของแต่ละบุคคล POPLUCK เป็นเครื่องสำอางสำหรับบำรุงผิว ไม่ใช่ยา และไม่มีผลในการรักษาโรค</span>
+          <span lang="en">Photo from a real customer, shared with permission. Results depend on skin condition, consistent use and overall skincare. POPLUCK is a cosmetic skincare product, not a medicine.</span></span>
+      </figcaption>
+    </figure>
+
+    <!-- ══ ช่องใส่รีวิวข้อความ: เมื่อได้รีวิวจริงแล้ว ลบ <!==> ครอบออกเพื่อเปิดใช้งาน ══
     <div class="slots">
       <figure class="slot" style="margin:0">
-        <span class="slot__badge"><span lang="th">ช่องใส่รีวิวที่ 1</span><span lang="en">Review slot 1</span></span>
-        <div class="stars" aria-hidden="true"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg></div>
-        <blockquote class="slot__quote" style="margin:0">
-          <span lang="th">“วางข้อความรีวิวจริงตรงนี้ — ประมาณ 2 บรรทัด เล่าว่าใช้นานเท่าไหร่และสังเกตเห็นอะไร”</span>
-          <span lang="en">“Paste a real review here — about two lines on how long they used it and what they noticed.”</span>
-        </blockquote>
-        <figcaption class="slot__who"><span lang="th">ชื่อลูกค้า · อายุ · จังหวัด</span><span lang="en">Customer name · age · city</span></figcaption>
-      </figure>
-      <figure class="slot" style="margin:0">
-        <span class="slot__badge"><span lang="th">ช่องใส่รีวิวที่ 2</span><span lang="en">Review slot 2</span></span>
-        <div class="stars" aria-hidden="true"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg></div>
-        <blockquote class="slot__quote" style="margin:0">
-          <span lang="th">“รีวิวที่ดีที่สุดคือรีวิวที่เล่าปัญหาเดิม แล้วเล่าสิ่งที่เปลี่ยนไป”</span>
-          <span lang="en">“The best reviews name the old problem, then what changed.”</span>
-        </blockquote>
-        <figcaption class="slot__who"><span lang="th">ชื่อลูกค้า · อายุ · จังหวัด</span><span lang="en">Customer name · age · city</span></figcaption>
-      </figure>
-      <figure class="slot" style="margin:0">
-        <span class="slot__badge"><span lang="th">ช่องภาพก่อน–หลัง</span><span lang="en">Before / after slot</span></span>
-        <div style="aspect-ratio:4/3;border-radius:12px;background:var(--gold-wash);display:grid;place-items:center;color:var(--gold-ink);font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-align:center;padding:10px">
-          <span lang="th">วางภาพจริง<br>ก่อน–หลัง ที่นี่</span><span lang="en">DROP A REAL<br>BEFORE / AFTER IMAGE</span>
-        </div>
-        <figcaption class="slot__who"><span lang="th">ระบุระยะเวลาใช้จริง เช่น 4 สัปดาห์</span><span lang="en">State the real duration, e.g. 4 weeks</span></figcaption>
+        <div class="stars" aria-hidden="true"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.5 7.2l5.9-.9z"/></svg></div>
+        <blockquote class="slot__quote" style="margin:0">“ข้อความรีวิวจริง 2 บรรทัด”</blockquote>
+        <figcaption class="slot__who">ชื่อลูกค้า · อายุ · จังหวัด</figcaption>
       </figure>
     </div>
+    ══ จบช่องใส่รีวิว ══ -->
   </div>
 </section>
 
@@ -558,6 +621,7 @@ a{color:inherit}
  {"@type":"Brand","@id":"#brand","name":"POPLUCK","slogan":"Find the love in your skin.","description":"Brightening & Dark Spot Complex skincare brand."},
  {"@type":"Product","name":"POPLUCK Brightening & Dark Spot Complex","brand":{"@id":"#brand"},
   "description":"A lightweight brightening cream combining six carefully selected brightening actives — Tranexamic Acid, Alpha-Arbutin, Vitamin C Derivative, Phenylethyl Resorcinol, Undecylenoyl Phenylalanine and Glutathione — designed to care for dull and uneven-looking skin.",
+  "image":["https://popluckskincare-thailand.github.io/popluckskincare/assets/popluck-og.jpg","https://popluckskincare-thailand.github.io/popluckskincare/assets/popluck-ingredients-th-1003.webp"],
   "category":"Skincare / Brightening cream",
   "additionalProperty":[
    {"@type":"PropertyValue","name":"Active","value":"Tranexamic Acid"},
@@ -607,3 +671,6 @@ a{color:inherit}
   },{threshold:0}).observe(hero);
 })();
 </script>
+
+</body>
+</html>
