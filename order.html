@@ -1,13 +1,28 @@
 <!doctype html>
-<html lang="th">
+<html lang="th" data-lang="th">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>สั่งซื้อ | POPLUCK Skincare Thailand</title>
+<title>สั่งซื้อ · Order | POPLUCK Skincare Thailand</title>
 <meta name="description" content="สั่งซื้อ POPLUCK Brightening &amp; Dark Spot Complex ชิ้นละ 390 บาท กรอกที่อยู่จัดส่ง ทีมงานติดต่อกลับเพื่อยืนยัน">
 <meta name="robots" content="noindex,follow">
 <meta name="theme-color" content="#C69146">
 <link rel="canonical" href="https://popluckskincare-thailand.github.io/popluckskincare/order.html">
+
+<script>
+/* ตั้งภาษาก่อนวาดหน้า กันหน้ากะพริบเป็นภาษาผิด
+   อ่านค่าเดียวกับหน้าแรก ('poplk-lang') และรับ ?lang= มา override ได้ */
+(function(){
+  var p = new URLSearchParams(location.search).get('lang');
+  var l = p || (function(){ try { return localStorage.getItem('poplk-lang'); } catch(e){ return null; } })();
+  if (l !== 'en' && l !== 'zh' && l !== 'th') {
+    l = (navigator.language || '').toLowerCase().indexOf('zh') === 0 ? 'zh'
+      : (navigator.language || '').toLowerCase().indexOf('th') === 0 ? 'th' : 'en';
+  }
+  document.documentElement.setAttribute('data-lang', l);
+  document.documentElement.setAttribute('lang', l === 'zh' ? 'zh-Hans' : l);
+})();
+</script>
 
 <style>
 /* ฟอนต์ชุดเดียวกับหน้าแรก (self-host อยู่แล้วใน assets/fonts) */
@@ -21,7 +36,13 @@
 @font-face{font-family:'Anuphan';font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/anuphan-thai-600-normal.woff2) format('woff2');unicode-range:U+0E01-0E5B,U+200C-200D,U+25CC}
 @font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(assets/fonts/ibm-plex-mono-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 
-/* โทเคนสีชุดเดียวกับหน้าแรกเป๊ะ ๆ */
+/* ---------- สลับภาษา (กติกาเดียวกับหน้าแรก) ---------- */
+[data-lang="th"] [lang="en"],[data-lang="th"] [lang="zh"]{display:none}
+[data-lang="en"] [lang="th"],[data-lang="en"] [lang="zh"]{display:none}
+[data-lang="zh"] [lang="th"],[data-lang="zh"] [lang="en"]{display:none}
+[lang="zh"],[lang="zh-Hans"]{font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC","Source Han Sans SC",system-ui,sans-serif;line-height:1.8}
+
+/* ---------- โทเคนสีชุดเดียวกับหน้าแรก ---------- */
 :root{
   --ground:#FCF9F5; --surface:#FFFFFF; --ink:#2E1F14; --ink-soft:#6B5645;
   --ink-faint:#93806E; --line:#EADFD2; --gold:#C69146; --gold-ink:#8A5A22;
@@ -53,93 +74,71 @@ body{
   font-family:"IBM Plex Sans Thai","Anuphan",system-ui,-apple-system,"Segoe UI",sans-serif;
   font-size:1.02rem;line-height:1.7;-webkit-font-smoothing:antialiased;
 }
-.wrap{max-width:var(--maxw);margin:0 auto;padding:36px var(--pad) 72px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:22px var(--pad) 72px}
+
+.topbar{display:flex;justify-content:flex-end;margin-bottom:14px}
+.langs{display:flex;align-items:center;gap:2px;border:1px solid var(--line);
+  border-radius:99px;padding:3px;background:var(--surface)}
+.langs button{border:0;background:transparent;color:var(--ink-soft);cursor:pointer;
+  font-family:inherit;font-size:.82rem;padding:5px 13px;border-radius:99px;transition:background .16s,color .16s}
+.langs button[aria-pressed="true"]{background:var(--gold);color:#2E1F14}
 
 header{text-align:center;margin-bottom:26px}
-.eyebrow{
-  font-size:.72rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
-  color:var(--gold-ink);
-}
-h1{
-  font-family:"Anuphan","IBM Plex Sans Thai",sans-serif;font-weight:600;
-  font-size:clamp(1.6rem,6vw,2.2rem);line-height:1.28;margin:10px 0 8px;text-wrap:balance;
-}
+.eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-ink)}
+h1{font-family:"Anuphan","IBM Plex Sans Thai",sans-serif;font-weight:600;
+  font-size:clamp(1.6rem,6vw,2.2rem);line-height:1.28;margin:10px 0 8px;text-wrap:balance}
 .lead{color:var(--ink-soft);font-size:1.06rem;margin:0}
-.back{
-  display:inline-block;margin-top:14px;font-size:.88rem;color:var(--ink-faint);
-  text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px;
-}
+.back{display:inline-block;margin-top:14px;font-size:.88rem;color:var(--ink-faint);
+  text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px}
 .back:hover{color:var(--gold-ink);border-color:var(--gold)}
 
-.card{
-  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
-  padding:clamp(20px,5vw,28px);box-shadow:var(--shadow);
-}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:clamp(20px,5vw,28px);box-shadow:var(--shadow)}
 
-.stockline{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
+.stockline{display:flex;align-items:center;justify-content:space-between;gap:12px;
   background:var(--butter);border-radius:12px;padding:12px 15px;margin-bottom:24px;
-  font-size:.92rem;color:var(--ink-soft);
-}
-.stockline b{
-  font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;
-  color:var(--ink);font-variant-numeric:tabular-nums;
-}
+  font-size:.92rem;color:var(--ink-soft)}
+.stockline b{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;
+  color:var(--ink);font-variant-numeric:tabular-nums}
 .stockline.low{background:var(--danger-wash)}
 .stockline.low b{color:var(--danger)}
 
 label{display:block;font-size:.9rem;font-weight:500;margin-bottom:7px}
 .req{color:var(--gold-ink)}
-input,textarea{
-  width:100%;font-family:inherit;font-size:16px;line-height:1.6;color:var(--ink);
-  background:var(--ground);border:1px solid var(--line);border-radius:12px;
-  padding:13px 15px;transition:border-color .16s,box-shadow .16s,background .16s;
-}
+input,textarea{width:100%;font-family:inherit;font-size:16px;line-height:1.6;color:var(--ink);
+  background:var(--ground);border:1px solid var(--line);border-radius:12px;padding:13px 15px;
+  transition:border-color .16s,box-shadow .16s,background .16s}
 textarea{resize:vertical;min-height:96px}
-input:focus,textarea:focus{
-  outline:none;background:var(--surface);border-color:var(--gold);
-  box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 22%,transparent);
-}
+input:focus,textarea:focus{outline:none;background:var(--surface);border-color:var(--gold);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 22%,transparent)}
 .field{margin-bottom:18px}
 .hint{font-size:.8rem;color:var(--ink-faint);margin-top:6px}
 
-.qty{
-  display:flex;align-items:center;width:fit-content;
-  border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--ground);
-}
-.qty button{
-  width:48px;height:48px;border:0;background:transparent;color:var(--ink);
-  font-size:1.3rem;cursor:pointer;transition:background .16s;
-}
+.qty{display:flex;align-items:center;width:fit-content;border:1px solid var(--line);
+  border-radius:12px;overflow:hidden;background:var(--ground)}
+.qty button{width:48px;height:48px;border:0;background:transparent;color:var(--ink);
+  font-size:1.3rem;cursor:pointer;transition:background .16s}
 .qty button:hover:not(:disabled){background:var(--gold-wash)}
 .qty button:disabled{color:var(--ink-faint);cursor:not-allowed}
-.qty input{
-  width:66px;text-align:center;border:0;border-left:1px solid var(--line);
+.qty input{width:66px;text-align:center;border:0;border-left:1px solid var(--line);
   border-right:1px solid var(--line);border-radius:0;background:var(--surface);
   font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;
-  font-variant-numeric:tabular-nums;-moz-appearance:textfield;
-}
+  font-variant-numeric:tabular-nums;-moz-appearance:textfield}
 .qty input::-webkit-outer-spin-button,.qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 .qty input:focus{box-shadow:none;background:var(--surface)}
 
-.total{
-  display:flex;justify-content:space-between;align-items:baseline;gap:12px;
-  border-top:1px solid var(--line);margin-top:24px;padding-top:20px;
-}
+.total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  border-top:1px solid var(--line);margin-top:24px;padding-top:20px}
 .total span{font-size:.95rem;color:var(--ink-soft)}
-.total b{
-  font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;
-  font-size:1.75rem;font-variant-numeric:tabular-nums;color:var(--gold-ink);
-}
+.total b{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;
+  font-size:1.75rem;font-variant-numeric:tabular-nums;color:var(--gold-ink)}
 
-button.submit{
-  width:100%;margin-top:20px;padding:16px;border:0;border-radius:12px;
-  background:var(--gold);color:#241B12;font-family:inherit;font-size:1.02rem;
-  font-weight:600;cursor:pointer;transition:transform .16s,filter .16s;
-}
+button.submit{width:100%;margin-top:20px;padding:16px;border:0;border-radius:12px;
+  background:var(--gold);color:#241B12;font-family:inherit;font-size:1.02rem;font-weight:600;
+  cursor:pointer;transition:transform .16s,filter .16s}
 button.submit:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.04)}
 button.submit:disabled{background:var(--line);color:var(--ink-faint);cursor:not-allowed;transform:none}
-@media (prefers-reduced-motion:reduce){ button.submit:hover:not(:disabled){transform:none} }
+@media (prefers-reduced-motion:reduce){button.submit:hover:not(:disabled){transform:none}}
 
 .msg{margin-top:16px;padding:13px 15px;border-radius:12px;font-size:.92rem;display:none}
 .msg.err{display:block;background:var(--danger-wash);color:var(--danger)}
@@ -157,74 +156,116 @@ button.submit:disabled{background:var(--line);color:var(--ink-faint);cursor:not-
 .recap div span{color:var(--ink-soft)}
 .recap div b{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;
   font-variant-numeric:tabular-nums;text-align:right}
-.linebtn{
-  display:inline-block;margin-top:20px;padding:13px 26px;border-radius:12px;
+.linebtn{display:inline-block;margin-top:20px;padding:13px 26px;border-radius:12px;
   background:var(--gold-wash);color:var(--gold-ink);text-decoration:none;
-  font-weight:600;font-size:.95rem;border:1px solid var(--gold);
-}
+  font-weight:600;font-size:.95rem;border:1px solid var(--gold)}
 footer{text-align:center;margin-top:26px;font-size:.78rem;color:var(--ink-faint)}
 </style>
 </head>
 <body>
 <div class="wrap">
 
+  <div class="topbar">
+    <div class="langs" role="group" aria-label="Language / ภาษา">
+      <button type="button" data-set-lang="th" aria-pressed="true">ไทย</button>
+      <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-set-lang="zh" aria-pressed="false" lang="zh-Hans">中文</button>
+    </div>
+  </div>
+
   <header>
     <div class="eyebrow">POPLUCK Skincare</div>
-    <h1>สั่งซื้อสินค้า</h1>
-    <p class="lead">Brightening &amp; Dark Spot Complex · ชิ้นละ 390 บาท</p>
-    <a class="back" href="./">&larr; กลับไปหน้ารายละเอียดสินค้า</a>
+    <h1><span lang="th">สั่งซื้อสินค้า</span><span lang="en">Place your order</span><span lang="zh">在线下单</span></h1>
+    <p class="lead">
+      <span lang="th">Brightening &amp; Dark Spot Complex · ชิ้นละ 390 บาท</span>
+      <span lang="en">Brightening &amp; Dark Spot Complex · ฿390 per jar</span>
+      <span lang="zh">Brightening &amp; Dark Spot Complex · 每瓶 390 泰铢</span>
+    </p>
+    <a class="back" href="./">
+      <span lang="th">&larr; กลับไปหน้ารายละเอียดสินค้า</span>
+      <span lang="en">&larr; Back to product details</span>
+      <span lang="zh">&larr; 返回产品详情</span>
+    </a>
   </header>
 
   <div class="card">
 
     <div class="stockline" id="stockline">
-      <span>สินค้าคงเหลือ</span>
-      <b id="stocknum">กำลังโหลด…</b>
+      <span>
+        <span lang="th">สินค้าคงเหลือ</span><span lang="en">In stock</span><span lang="zh">现货库存</span>
+      </span>
+      <b id="stocknum">…</b>
     </div>
 
     <form id="form" novalidate>
       <div class="field">
-        <label for="name">ชื่อ-นามสกุลผู้รับ <span class="req">*</span></label>
-        <input id="name" type="text" autocomplete="name" placeholder="สมหญิง ใจดี" required>
+        <label for="name">
+          <span lang="th">ชื่อ-นามสกุลผู้รับ</span><span lang="en">Recipient's full name</span><span lang="zh">收件人姓名</span>
+          <span class="req">*</span>
+        </label>
+        <input id="name" type="text" autocomplete="name" required>
       </div>
 
       <div class="field">
-        <label for="phone">เบอร์โทรศัพท์ <span class="req">*</span></label>
-        <input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0812345678" required>
-        <div class="hint">ใช้ติดต่อกลับและแจ้งเลขพัสดุ</div>
+        <label for="phone">
+          <span lang="th">เบอร์โทรศัพท์</span><span lang="en">Phone number</span><span lang="zh">联系电话</span>
+          <span class="req">*</span>
+        </label>
+        <input id="phone" type="tel" inputmode="tel" autocomplete="tel" required>
+        <div class="hint">
+          <span lang="th">ใช้ติดต่อกลับและแจ้งเลขพัสดุ</span>
+          <span lang="en">For order confirmation and tracking updates</span>
+          <span lang="zh">用于确认订单与告知物流单号</span>
+        </div>
       </div>
 
       <div class="field">
-        <label for="address">ที่อยู่จัดส่ง <span class="req">*</span></label>
-        <textarea id="address" autocomplete="street-address"
-          placeholder="บ้านเลขที่ / ถนน / แขวง / เขต / จังหวัด / รหัสไปรษณีย์" required></textarea>
-        <div class="hint">อย่าลืมใส่รหัสไปรษณีย์</div>
+        <label for="address">
+          <span lang="th">ที่อยู่จัดส่ง</span><span lang="en">Shipping address</span><span lang="zh">收货地址</span>
+          <span class="req">*</span>
+        </label>
+        <textarea id="address" autocomplete="street-address" required></textarea>
+        <div class="hint">
+          <span lang="th">อย่าลืมใส่รหัสไปรษณีย์</span>
+          <span lang="en">Please include the postal code</span>
+          <span lang="zh">请务必填写邮政编码</span>
+        </div>
       </div>
 
       <div class="field">
-        <label for="qty">จำนวน</label>
+        <label for="qty"><span lang="th">จำนวน</span><span lang="en">Quantity</span><span lang="zh">数量</span></label>
         <div class="qty">
-          <button type="button" id="minus" aria-label="ลดจำนวน">&minus;</button>
-          <input id="qty" type="number" value="1" min="1" max="100" inputmode="numeric" aria-label="จำนวนชิ้น">
-          <button type="button" id="plus" aria-label="เพิ่มจำนวน">+</button>
+          <button type="button" id="minus" aria-label="−">&minus;</button>
+          <input id="qty" type="number" value="1" min="1" max="100" inputmode="numeric" aria-label="Quantity">
+          <button type="button" id="plus" aria-label="+">+</button>
         </div>
       </div>
 
       <div class="total">
-        <span>ยอดรวม</span>
+        <span><span lang="th">ยอดรวม</span><span lang="en">Total</span><span lang="zh">合计</span></span>
         <b id="total">390 ฿</b>
       </div>
 
-      <button type="submit" class="submit" id="submit">ยืนยันสั่งซื้อ</button>
+      <button type="submit" class="submit" id="submit">
+        <span lang="th">ยืนยันสั่งซื้อ</span><span lang="en">Confirm order</span><span lang="zh">确认下单</span>
+      </button>
       <div class="msg" id="msg" role="alert"></div>
     </form>
 
     <div class="done" id="done">
       <div class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></div>
-      <h2>รับออร์เดอร์เรียบร้อย</h2>
-      <p>ทีมงานจะติดต่อกลับเพื่อยืนยันการชำระเงิน</p>
+      <h2><span lang="th">รับออร์เดอร์เรียบร้อย</span><span lang="en">Order received</span><span lang="zh">订单已收到</span></h2>
+      <p>
+        <span lang="th">ทีมงานจะติดต่อกลับเพื่อยืนยันการชำระเงิน</span>
+        <span lang="en">Our team will contact you to confirm payment.</span>
+        <span lang="zh">我们的团队将与您联系确认付款。</span>
+      </p>
       <div class="recap" id="recap"></div>
-      <a class="linebtn" href="https://lin.ee/VAJR0cU">ทักแชท LINE เพื่อยืนยัน</a>
+      <a class="linebtn" href="https://lin.ee/VAJR0cU" target="_blank" rel="noopener">
+        <span lang="th">ทักแชท LINE เพื่อยืนยัน</span>
+        <span lang="en">Confirm with us on LINE</span>
+        <span lang="zh">通过 LINE 与我们确认</span>
+      </a>
     </div>
 
   </div>
@@ -249,26 +290,83 @@ const HEADERS = {
   'Content-Type': 'application/json'
 };
 
+/* ---------- ข้อความที่ JS สร้างเอง (span ในหน้าใช้ไม่ได้) ---------- */
+const T = {
+  th: {
+    phName:'สมหญิง ใจดี', phPhone:'0812345678',
+    phAddr:'บ้านเลขที่ / ถนน / แขวง / เขต / จังหวัด / รหัสไปรษณีย์',
+    loading:'กำลังโหลด…', unit:'ชิ้น', soldOut:'หมดชั่วคราว', soldOutBtn:'สินค้าหมดชั่วคราว',
+    saving:'กำลังบันทึก…', submit:'ยืนยันสั่งซื้อ',
+    errName:'กรุณากรอกชื่อ-นามสกุล', errPhone:'กรุณากรอกเบอร์โทรให้ถูกต้อง',
+    errAddr:'กรุณากรอกที่อยู่จัดส่งให้ครบถ้วน', errNet:'เชื่อมต่อไม่สำเร็จ กรุณาลองใหม่อีกครั้ง',
+    errStock:n => 'ขออภัย สินค้าเหลือ ' + n + ' ชิ้น กรุณาลดจำนวนลง',
+    rOrder:'เลขที่ออร์เดอร์', rName:'ผู้รับ', rQty:'จำนวน', rTotal:'ยอดชำระ',
+    channel:' · ช่องทาง '
+  },
+  en: {
+    phName:'Jane Doe', phPhone:'0812345678',
+    phAddr:'House no. / street / sub-district / district / province / postal code',
+    loading:'Loading…', unit:'left', soldOut:'Sold out', soldOutBtn:'Temporarily sold out',
+    saving:'Saving…', submit:'Confirm order',
+    errName:'Please enter your full name', errPhone:'Please enter a valid phone number',
+    errAddr:'Please enter your complete shipping address', errNet:'Connection failed. Please try again.',
+    errStock:n => 'Sorry, only ' + n + ' left in stock. Please reduce the quantity.',
+    rOrder:'Order no.', rName:'Recipient', rQty:'Quantity', rTotal:'Total',
+    channel:' · via '
+  },
+  zh: {
+    phName:'张小美', phPhone:'0812345678',
+    phAddr:'门牌号 / 街道 / 分区 / 区 / 府 / 邮政编码',
+    loading:'加载中…', unit:'瓶', soldOut:'暂时售罄', soldOutBtn:'暂时售罄',
+    saving:'提交中…', submit:'确认下单',
+    errName:'请填写收件人姓名', errPhone:'请填写正确的联系电话',
+    errAddr:'请填写完整的收货地址', errNet:'连接失败，请再试一次。',
+    errStock:n => '抱歉，库存仅剩 ' + n + ' 瓶，请减少数量。',
+    rOrder:'订单号', rName:'收件人', rQty:'数量', rTotal:'应付金额',
+    channel:' · 来源 '
+  }
+};
+let LANG = document.documentElement.getAttribute('data-lang') || 'th';
+const t = () => T[LANG];
+
 /* ---------- ช่องทางขาย จาก URL parameter ----------
-   ?from=line   -> LINE OA        ?from=tiktok -> TikTok
-   ?from=shopee -> Shopee         ไม่ระบุ/ค่าอื่น -> Website        */
+   ?from=line -> LINE OA   ?from=tiktok -> TikTok
+   ?from=shopee -> Shopee  ไม่ระบุ/ค่าอื่น -> Website        */
 const CHANNEL_MAP = {
   line:'LINE OA', lineoa:'LINE OA', 'line-oa':'LINE OA', 'line_oa':'LINE OA',
-  tiktok:'TikTok', tt:'TikTok',
-  shopee:'Shopee'
+  tiktok:'TikTok', tt:'TikTok', shopee:'Shopee'
 };
-function detectChannel(){
-  const p = new URLSearchParams(location.search);
-  const raw = (p.get('from') || p.get('utm_source') || '').trim().toLowerCase();
-  return CHANNEL_MAP[raw] || 'Website';
-}
-const CHANNEL = detectChannel();
-document.getElementById('chlabel').textContent = ' · ช่องทาง ' + CHANNEL;
+const params = new URLSearchParams(location.search);
+const CHANNEL = CHANNEL_MAP[(params.get('from') || params.get('utm_source') || '').trim().toLowerCase()] || 'Website';
 
 /* ---------- helper ---------- */
 const $ = id => document.getElementById(id);
 const form = $('form'), qtyEl = $('qty'), submitBtn = $('submit'), msg = $('msg');
 let stockLeft = null;
+
+function applyLang(l){
+  LANG = l;
+  document.documentElement.setAttribute('data-lang', l);
+  document.documentElement.setAttribute('lang', l === 'zh' ? 'zh-Hans' : l);
+  try { localStorage.setItem('poplk-lang', l); } catch(e){}
+
+  document.querySelectorAll('.langs button').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.setLang === l)));
+
+  $('name').placeholder    = t().phName;
+  $('phone').placeholder   = t().phPhone;
+  $('address').placeholder = t().phAddr;
+  $('chlabel').textContent = t().channel + CHANNEL;
+
+  if (stockLeft === null)    $('stocknum').textContent = t().loading;
+  else if (stockLeft <= 0)   $('stocknum').textContent = t().soldOut;
+  else                       $('stocknum').textContent = stockLeft.toLocaleString() + ' ' + t().unit;
+
+  if (submitBtn.disabled && stockLeft !== null && stockLeft <= 0)
+    submitBtn.textContent = t().soldOutBtn;
+}
+document.querySelectorAll('.langs button').forEach(b =>
+  b.addEventListener('click', () => applyLang(b.dataset.setLang)));
 
 function currentQty(){
   let n = parseInt(qtyEl.value, 10);
@@ -279,7 +377,7 @@ function currentQty(){
 function refreshTotal(){
   const n = currentQty();
   qtyEl.value = n;
-  $('total').textContent = (n * UNIT_PRICE).toLocaleString('th-TH') + ' ฿';
+  $('total').textContent = (n * UNIT_PRICE).toLocaleString() + ' ฿';
   $('minus').disabled = n <= 1;
   $('plus').disabled  = n >= 100 || (stockLeft !== null && n >= stockLeft);
 }
@@ -287,6 +385,8 @@ qtyEl.addEventListener('input', refreshTotal);
 qtyEl.addEventListener('blur',  refreshTotal);
 $('minus').addEventListener('click', () => { qtyEl.value = currentQty() - 1; refreshTotal(); });
 $('plus') .addEventListener('click', () => { qtyEl.value = currentQty() + 1; refreshTotal(); });
+
+applyLang(LANG);
 refreshTotal();
 
 /* ---------- สต๊อกคงเหลือ ---------- */
@@ -299,13 +399,12 @@ refreshTotal();
     if(!rows.length) throw 0;
 
     stockLeft = rows[0].stock_quantity;
-    $('stocknum').textContent = stockLeft.toLocaleString('th-TH') + ' ชิ้น';
     if(stockLeft <= LOW_STOCK) $('stockline').classList.add('low');
     if(stockLeft <= 0){
-      $('stocknum').textContent = 'หมดชั่วคราว';
       submitBtn.disabled = true;
-      submitBtn.textContent = 'สินค้าหมดชั่วคราว';
+      submitBtn.textContent = t().soldOutBtn;
     }
+    applyLang(LANG);
     refreshTotal();
   }catch(e){
     /* อ่านสต๊อกไม่ได้ก็ยังสั่งได้ ฐานข้อมูลเป็นคนตรวจตอนกดยืนยันอยู่ดี */
@@ -323,12 +422,12 @@ form.addEventListener('submit', async (e) => {
   const address = $('address').value.trim();
   const n       = currentQty();
 
-  if(!name)                              return showErr('กรุณากรอกชื่อ-นามสกุล');
-  if(!/^[0-9+\-\s]{9,15}$/.test(phone))  return showErr('กรุณากรอกเบอร์โทรให้ถูกต้อง');
-  if(address.length < 10)                return showErr('กรุณากรอกที่อยู่จัดส่งให้ครบถ้วน');
+  if(!name)                             return showErr(t().errName);
+  if(!/^[0-9+\-\s]{9,15}$/.test(phone)) return showErr(t().errPhone);
+  if(address.length < 10)               return showErr(t().errAddr);
 
   submitBtn.disabled = true;
-  submitBtn.textContent = 'กำลังบันทึก…';
+  submitBtn.textContent = t().saving;
 
   try{
     /* ฟังก์ชันเดียวจบ — ตรวจสต๊อก / ตัดสต๊อก / บันทึกออร์เดอร์
@@ -345,18 +444,30 @@ form.addEventListener('submit', async (e) => {
       })
     });
     const data = await r.json();
-    if(!r.ok) throw new Error(data.message || data.hint || ('เกิดข้อผิดพลาด (' + r.status + ')'));
+    if(!r.ok) throw new Error(translateServerError(data.message));
     showDone(data, name, n);
   }catch(err){
-    showErr(err.message || 'เชื่อมต่อไม่สำเร็จ กรุณาลองใหม่อีกครั้ง');
+    showErr(err.message || t().errNet);
     submitBtn.disabled = false;
-    submitBtn.textContent = 'ยืนยันสั่งซื้อ';
+    submitBtn.textContent = t().submit;
   }
 });
 
-function showErr(t){
+/* ฐานข้อมูลส่งข้อความผิดพลาดมาเป็นภาษาไทยเสมอ
+   แปลงเคสที่ลูกค้าเจอจริงให้เป็นภาษาที่กำลังดูอยู่ */
+function translateServerError(raw){
+  if(!raw) return t().errNet;
+  const m = raw.match(/เหลือ\s*(\d+)/);
+  if(m) return t().errStock(m[1]);
+  if(raw.indexOf('เบอร์โทร') >= 0) return t().errPhone;
+  if(raw.indexOf('ที่อยู่')   >= 0) return t().errAddr;
+  if(raw.indexOf('ชื่อ')     >= 0) return t().errName;
+  return LANG === 'th' ? raw : t().errNet;
+}
+
+function showErr(text){
   msg.className = 'msg err';
-  msg.textContent = t;
+  msg.textContent = text;
   msg.scrollIntoView({behavior:'smooth', block:'center'});
   return false;
 }
@@ -365,10 +476,10 @@ function showDone(data, name, n){
   form.style.display = 'none';
   $('stockline').style.display = 'none';
   $('recap').innerHTML =
-    row('เลขที่ออร์เดอร์', '#' + data.order_id) +
-    row('ผู้รับ', esc(name)) +
-    row('จำนวน', n + ' ชิ้น') +
-    row('ยอดชำระ', Number(data.total_price).toLocaleString('th-TH') + ' ฿');
+    row(t().rOrder, '#' + data.order_id) +
+    row(t().rName,  esc(name)) +
+    row(t().rQty,   n + ' ' + (LANG === 'th' ? 'ชิ้น' : LANG === 'zh' ? '瓶' : 'pcs')) +
+    row(t().rTotal, Number(data.total_price).toLocaleString() + ' ฿');
   $('done').classList.add('show');
   window.scrollTo({top:0, behavior:'smooth'});
 }

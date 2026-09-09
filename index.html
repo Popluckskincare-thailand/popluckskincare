@@ -421,6 +421,21 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
   .rv{opacity:1;transform:none}
   .arc path{stroke-dashoffset:0}
 }
+
+/* ---------- ปุ่มสั่งซื้อ (เพิ่มภายหลัง) ---------- */
+.cta-pair{display:flex;flex-direction:column;align-items:center;gap:10px;width:100%}
+.cta-pair>.btn{width:100%;max-width:400px}
+.cta-pair__alt{gap:8px}
+.cta-pair__alt svg{width:18px;height:18px;opacity:.75}
+.dock{gap:8px}
+.dock a{width:auto;flex:1 1 0;min-width:0}
+.dock .btn--gold{flex:1.6 1 0}
+.dock .dock__alt{padding:15px 14px}
+.dock .dock__alt svg{width:19px;height:19px}
+@media (max-width:360px){
+  .dock .dock__alt span{display:none}
+  .dock .dock__alt{flex:0 0 54px}
+}
 </style>
 
 </head>
@@ -460,11 +475,16 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
       <span class="arch__ring" aria-hidden="true"></span>
     </figure>
 
-    <a class="btn btn--gold btn--xl" href="https://lin.ee/VAJR0cU" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 5.6 2 10.05c0 3.98 3.57 7.32 8.39 7.95.33.07.77.22.88.5.1.26.07.66.03.92l-.14.85c-.04.25-.2.98.86.53s5.7-3.36 7.78-5.75C21.2 13.5 22 11.87 22 10.05 22 5.6 17.5 2 12 2Z"/></svg>
-      <span lang="th">ทักไลน์รับสิทธิ์วันนี้</span>
-      <span lang="en">Chat with us on LINE</span><span lang="zh">立即咨询 · 领取今日优惠</span>
-    </a>
+    <div class="cta-pair">
+      <a class="btn btn--gold btn--xl js-order" href="order.html">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 6V5a5 5 0 0 1 10 0v1h3a1 1 0 0 1 1 1.08l-1.2 13A2 2 0 0 1 17.8 22H6.2a2 2 0 0 1-2-1.92L3 7.08A1 1 0 0 1 4 6h3Zm2 0h6V5a3 3 0 0 0-6 0v1Z"/></svg>
+        <span lang="th">สั่งซื้อออนไลน์ · 390 บาท</span><span lang="en">Order online · ฿390</span><span lang="zh">在线下单 · 390 泰铢</span>
+      </a>
+      <a class="btn btn--ghost cta-pair__alt" href="https://lin.ee/VAJR0cU" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 5.6 2 10.05c0 3.98 3.57 7.32 8.39 7.95.33.07.77.22.88.5.1.26.07.66.03.92l-.14.85c-.04.25-.2.98.86.53s5.7-3.36 7.78-5.75C21.2 13.5 22 11.87 22 10.05 22 5.6 17.5 2 12 2Z"/></svg>
+        <span lang="th">หรือทักไลน์สอบถามก่อน</span><span lang="en">Or ask us on LINE first</span><span lang="zh">或先用 LINE 咨询</span>
+      </a>
+    </div>
 
     <div class="trust">
       <span lang="th">6 สารกระจ่างใส</span><span lang="en">6 Brightening Actives</span><span lang="zh">六重亮白成分</span>
@@ -583,17 +603,17 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
 
     <div class="actives">
       <div class="active"><span class="active__name">Tranexamic Acid</span><span class="active__role">
-        <span lang="en">Body dark spots, friction marks</span><span lang="zh">身体色斑・摩擦暗沉</span></span></div>
+        <span lang="th">จุดด่างดำ · รอยเสียดสี</span><span lang="en">Body dark spots, friction marks</span><span lang="zh">身体色斑・摩擦暗沉</span></span></div>
       <div class="active"><span class="active__name">Alpha-Arbutin</span><span class="active__role">
-        <span lang="en">Limits excess pigment</span><span lang="zh">抑制多余黑色素</span></span></div>
+        <span lang="th">ลดการสร้างเม็ดสี</span><span lang="en">Limits excess pigment</span><span lang="zh">抑制多余黑色素</span></span></div>
       <div class="active"><span class="active__name">Vitamin C Derivative</span><span class="active__role">
-        <span lang="en">Antioxidant, brighter look</span><span lang="zh">抗氧化・提亮肤色</span></span></div>
+        <span lang="th">ต้านอนุมูลอิสระ · ผิวกระจ่าง</span><span lang="en">Antioxidant, brighter look</span><span lang="zh">抗氧化・提亮肤色</span></span></div>
       <div class="active"><span class="active__name">Phenylethyl Resorcinol</span><span class="active__role">
-        <span lang="en">Targets dark spots</span><span lang="zh">针对顽固色斑</span></span></div>
+        <span lang="th">จัดการจุดด่างดำ</span><span lang="en">Targets dark spots</span><span lang="zh">针对顽固色斑</span></span></div>
       <div class="active"><span class="active__name">Undecylenoyl Phenylalanine</span><span class="active__role">
-        <span lang="en">Darkening caused by friction</span><span lang="zh">摩擦造成的暗沉</span></span></div>
+        <span lang="th">ความหมองคล้ำจากการเสียดสี</span><span lang="en">Darkening caused by friction</span><span lang="zh">摩擦造成的暗沉</span></span></div>
       <div class="active"><span class="active__name">Glutathione</span><span class="active__role">
-        <span lang="en">Antioxidant, luminous look</span><span lang="zh">抗氧化・透亮光泽</span></span></div>
+        <span lang="th">ต้านอนุมูลอิสระ · ผิวดูมีออร่า</span><span lang="en">Antioxidant, luminous look</span><span lang="zh">抗氧化・透亮光泽</span></span></div>
     </div>
   </div>
 </section>
@@ -718,8 +738,8 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
         <p><span lang="th">สารกระจ่างใสหลัก 6 ชนิด — Tranexamic Acid, Alpha-Arbutin, Vitamin C Derivative, Phenylethyl Resorcinol, Undecylenoyl Phenylalanine และ Glutathione — พร้อมสารบำรุงอย่าง Sodium Hyaluronate, Panax Ginseng Root Extract และ Allantoin ดูส่วนผสมทั้งฉลากได้ที่หัวข้อ Ingredients ด้านบน</span>
           <span lang="en">Six key brightening actives — Tranexamic Acid, Alpha-Arbutin, Vitamin C Derivative, Phenylethyl Resorcinol, Undecylenoyl Phenylalanine and Glutathione — alongside Sodium Hyaluronate, Panax Ginseng Root Extract and Allantoin. The full label is in the Ingredients section above.</span><span lang="zh">六种核心亮白成分 — Tranexamic Acid、Alpha-Arbutin、Vitamin C Derivative、Phenylethyl Resorcinol、Undecylenoyl Phenylalanine 与 Glutathione — 另外还有 Sodium Hyaluronate、Panax Ginseng Root Extract 和 Allantoin。完整成分表就在上方 Ingredients 区块。</span></p></details>
       <details><summary><span lang="th">สั่งซื้อยังไง ราคาเท่าไหร่</span><span lang="en">How do I order, and what does it cost?</span><span lang="zh">怎么订购？价格多少？</span></summary>
-        <p><span lang="th">ทักไลน์ของแบรนด์เพื่อสอบถามราคา โปรโมชั่นที่มีอยู่ และสั่งซื้อได้โดยตรง ทีมงานตอบทุกวัน</span>
-          <span lang="en">Message us on LINE for pricing, current offers and to order directly. We reply every day.</span><span lang="zh">中国大陆的朋友请通过页面下方的微信与我们联系，即可询问价格、当期优惠并直接下单；其他地区可使用 LINE。我们每天都会回复。</span></p></details>
+        <p><span lang="th">สั่งซื้อออนไลน์ได้เลยที่หน้าสั่งซื้อ ราคาชิ้นละ 390 บาท กรอกชื่อ เบอร์โทร และที่อยู่ แล้วทีมงานจะติดต่อกลับเพื่อยืนยัน หรือถ้าอยากสอบถามก่อน ทักไลน์ได้ทุกวัน</span>
+          <span lang="en">Order online on our order page — ฿390 per jar. Fill in your name, phone and address and we'll contact you to confirm. Prefer to ask first? Message us on LINE any day.</span><span lang="zh">可直接在订购页在线下单，每瓶 390 泰铢，填写姓名、电话与地址后我们会联系确认。中国大陆的朋友也可通过页面下方的微信与我们联系；其他地区可使用 LINE。我们每天都会回复。</span></p></details>
     </div>
   </div>
 </section>
@@ -736,18 +756,23 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
       <span lang="en">Find the love in your skin.<small>พบรักกับผิวของคุณอีกครั้ง</small></span><span lang="zh">重新爱上自己的肌肤<small>Find the love in your skin.</small></span>
     </p>
     <h2 id="cta-h">
-      <span lang="th">ทักไลน์วันนี้<br>รับสิทธิ์พิเศษก่อนใคร</span>
-      <span lang="en">Message us today for first access</span><span lang="zh">今天就联系我们<br>抢先拿到专属优惠</span>
+      <span lang="th">สั่งซื้อวันนี้<br>รับสิทธิ์พิเศษก่อนใคร</span>
+      <span lang="en">Order today for first access</span><span lang="zh">今天就下单<br>抢先拿到专属优惠</span>
     </h2>
     <p class="lead" style="max-width:34ch;margin-inline:auto">
-      <span lang="th">สอบถามราคา โปรโมชั่น และวิธีใช้ที่เหมาะกับผิวคุณ ทักได้เลย ไม่มีค่าใช้จ่าย</span>
-      <span lang="en">Ask about pricing, current offers, and how to use it for your skin. Free, no obligation.</span><span lang="zh">想知道价格、当期优惠，还有适合你肤质的用法？直接问我们，完全免费。</span>
+      <span lang="th">สั่งซื้อออนไลน์ได้ทันที หรือทักไลน์เพื่อสอบถามราคา โปรโมชั่น และวิธีใช้ที่เหมาะกับผิวคุณ ไม่มีค่าใช้จ่าย</span>
+      <span lang="en">Order online right away, or message us on LINE about pricing, offers and how to use it for your skin. Free, no obligation.</span><span lang="zh">可以直接在线下单，也可以先咨询价格、当期优惠与适合你肤质的用法。完全免费。</span>
     </p>
-    <a class="btn btn--gold btn--xl" href="https://lin.ee/VAJR0cU" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 5.6 2 10.05c0 3.98 3.57 7.32 8.39 7.95.33.07.77.22.88.5.1.26.07.66.03.92l-.14.85c-.04.25-.2.98.86.53s5.7-3.36 7.78-5.75C21.2 13.5 22 11.87 22 10.05 22 5.6 17.5 2 12 2Z"/></svg>
-      <span lang="th">ทักไลน์รับสิทธิ์ฟรีวันนี้</span>
-      <span lang="en">Get your offer on LINE</span><span lang="zh">立即咨询 · 领取今日优惠</span>
-    </a>
+    <div class="cta-pair">
+      <a class="btn btn--gold btn--xl js-order" href="order.html">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 6V5a5 5 0 0 1 10 0v1h3a1 1 0 0 1 1 1.08l-1.2 13A2 2 0 0 1 17.8 22H6.2a2 2 0 0 1-2-1.92L3 7.08A1 1 0 0 1 4 6h3Zm2 0h6V5a3 3 0 0 0-6 0v1Z"/></svg>
+        <span lang="th">สั่งซื้อออนไลน์ · 390 บาท</span><span lang="en">Order online · ฿390</span><span lang="zh">在线下单 · 390 泰铢</span>
+      </a>
+      <a class="btn btn--ghost cta-pair__alt" href="https://lin.ee/VAJR0cU" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 5.6 2 10.05c0 3.98 3.57 7.32 8.39 7.95.33.07.77.22.88.5.1.26.07.66.03.92l-.14.85c-.04.25-.2.98.86.53s5.7-3.36 7.78-5.75C21.2 13.5 22 11.87 22 10.05 22 5.6 17.5 2 12 2Z"/></svg>
+        <span lang="th">หรือทักไลน์สอบถามก่อน</span><span lang="en">Or ask us on LINE first</span><span lang="zh">或先用 LINE 咨询</span>
+      </a>
+    </div>
     <!-- ▼ ช่อง WeChat — แสดงเฉพาะโหมดภาษาจีน แก้ 2 จุดเมื่อได้ข้อมูลจริง:
              1) แทน "待补充" ด้วยไอดี WeChat
              2) แทนข้อความในกล่อง .wechat__qr ด้วย <img src="assets/wechat-qr.png" alt="POPLUCK 微信二维码"> -->
@@ -780,9 +805,13 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
 </footer>
 
 <div class="dock" id="dock">
-  <a class="btn btn--gold" href="https://lin.ee/VAJR0cU" target="_blank" rel="noopener">
+  <a class="btn btn--gold js-order" href="order.html">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 6V5a5 5 0 0 1 10 0v1h3a1 1 0 0 1 1 1.08l-1.2 13A2 2 0 0 1 17.8 22H6.2a2 2 0 0 1-2-1.92L3 7.08A1 1 0 0 1 4 6h3Zm2 0h6V5a3 3 0 0 0-6 0v1Z"/></svg>
+    <span lang="th">สั่งซื้อ · 390.-</span><span lang="en">Order · ฿390</span><span lang="zh">下单 · 390฿</span>
+  </a>
+  <a class="btn btn--ghost dock__alt" href="https://lin.ee/VAJR0cU" target="_blank" rel="noopener" aria-label="LINE">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 5.6 2 10.05c0 3.98 3.57 7.32 8.39 7.95.33.07.77.22.88.5.1.26.07.66.03.92l-.14.85c-.04.25-.2.98.86.53s5.7-3.36 7.78-5.75C21.2 13.5 22 11.87 22 10.05 22 5.6 17.5 2 12 2Z"/></svg>
-    <span lang="th">ทักไลน์รับสิทธิ์ฟรีวันนี้</span><span lang="en">Get your offer on LINE</span><span lang="zh">立即咨询 · 领取今日优惠</span>
+    <span lang="th">ทักไลน์</span><span lang="en">LINE</span><span lang="zh">咨询</span>
   </a>
 </div>
 
@@ -883,5 +912,17 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
 })();
 </script>
 
+<script>
+/* ถ้าลูกค้าเข้าหน้านี้มาจากลิงก์ที่ติดแท็กช่องทางไว้ (เช่น ?from=line)
+   ให้ส่งแท็กนั้นต่อไปหน้าสั่งซื้อ ยอดขายจะถูกนับเข้าช่องทางที่ถูกต้อง
+   ส่วนภาษา หน้า order.html อ่านจาก localStorage 'poplk-lang' เองอยู่แล้ว */
+(function(){
+  var from = new URLSearchParams(location.search).get('from');
+  if(!from) return;
+  document.querySelectorAll('a.js-order').forEach(function(a){
+    a.setAttribute('href','order.html?from='+encodeURIComponent(from));
+  });
+})();
+</script>
 </body>
 </html>
