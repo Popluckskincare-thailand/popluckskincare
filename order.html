@@ -198,6 +198,13 @@ footer{text-align:center;margin-top:26px;font-size:.78rem;color:var(--ink-faint)
 /* แตะแถวเลขบัญชีตรงไหนก็คัดลอกได้ ไม่ต้องเล็งปุ่มเล็ก ๆ บนมือถือ */
 .payrow--acct{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .payrow--acct:active{background:var(--gold-wash)}
+
+/* ---------- กล่องสั่งจองล่วงหน้า ---------- */
+.prebox{background:var(--gold-wash);color:var(--gold-ink);border:1px solid var(--gold);
+  border-radius:12px;padding:12px 15px;margin-bottom:20px;font-size:.88rem;
+  line-height:1.6;text-align:left}
+.prebox b{display:block;margin-bottom:3px}
+#predone{margin:16px 0 0}
 </style>
 </head>
 <body>
@@ -235,6 +242,10 @@ footer{text-align:center;margin-top:26px;font-size:.78rem;color:var(--ink-faint)
       <b id="stocknum">…</b>
     </div>
 
+      <div class="prebox" id="prebox" hidden>
+        <b><span lang="th">สินค้าหมดชั่วคราว — เปิดให้สั่งจองล่วงหน้า</span><span lang="en">Out of stock — pre-order open</span><span lang="zh">现货售罄 — 接受预订</span></b>
+        <span id="prenote"></span>
+      </div>
     <form id="form" novalidate>
       <div class="field">
         <label for="name">
@@ -303,6 +314,11 @@ footer{text-align:center;margin-top:26px;font-size:.78rem;color:var(--ink-faint)
         <span lang="zh">还差一步 — 请按下方信息转账，然后把凭证发给我们。</span>
       </p>
       <div class="recap" id="recap"></div>
+      <div class="prebox" id="predone" hidden>
+        <b><span lang="th">นี่คือการสั่งจองล่วงหน้า</span><span lang="en">This is a pre-order</span><span lang="zh">这是一笔预订订单</span></b>
+        <span id="prenote2"></span>
+      </div>
+
 
       <div class="pay">
         <div class="pay__h"><span lang="th">ชำระเงินโดยโอนเข้าบัญชีธนาคาร</span><span lang="en">Pay by bank transfer</span><span lang="zh">银行转账付款</span></div>
@@ -381,7 +397,8 @@ const T = {
     errAddr:'กรุณากรอกที่อยู่จัดส่งให้ครบถ้วน', errNet:'เชื่อมต่อไม่สำเร็จ กรุณาลองใหม่อีกครั้ง',
     errStock:n => 'ขออภัย สินค้าเหลือ ' + n + ' ชิ้น กรุณาลดจำนวนลง',
     rOrder:'เลขที่ออร์เดอร์', rName:'ผู้รับ', rQty:'จำนวน', rTotal:'ยอดชำระ',
-    channel:' · ช่องทาง '
+    channel:' · ช่องทาง ',
+    preShort:'เปิดให้สั่งจอง', preBtn:'สั่งจองล่วงหน้า'
   },
   en: {
     phName:'Jane Doe', phPhone:'0812345678',
@@ -392,7 +409,8 @@ const T = {
     errAddr:'Please enter your complete shipping address', errNet:'Connection failed. Please try again.',
     errStock:n => 'Sorry, only ' + n + ' left in stock. Please reduce the quantity.',
     rOrder:'Order no.', rName:'Recipient', rQty:'Quantity', rTotal:'Total',
-    channel:' · via '
+    channel:' · via ',
+    preShort:'Pre-order', preBtn:'Place pre-order'
   },
   zh: {
     phName:'张小美', phPhone:'0812345678',
@@ -403,7 +421,8 @@ const T = {
     errAddr:'请填写完整的收货地址', errNet:'连接失败，请再试一次。',
     errStock:n => '抱歉，库存仅剩 ' + n + ' 瓶，请减少数量。',
     rOrder:'订单号', rName:'收件人', rQty:'数量', rTotal:'应付金额',
-    channel:' · 来源 '
+    channel:' · 来源 ',
+    preShort:'接受预订', preBtn:'立即预订'
   }
 };
 let LANG = document.documentElement.getAttribute('data-lang') || 'th';
@@ -423,6 +442,7 @@ const CHANNEL = CHANNEL_MAP[(params.get('from') || params.get('utm_source') || '
 const $ = id => document.getElementById(id);
 const form = $('form'), qtyEl = $('qty'), submitBtn = $('submit'), msg = $('msg');
 let stockLeft = null;
+let PRE = { on:false, note:'' };   // สถานะรับสั่งจองล่วงหน้า
 
 function applyLang(l){
   LANG = l;
@@ -438,9 +458,15 @@ function applyLang(l){
   $('address').placeholder = t().phAddr;
   $('chlabel').textContent = t().channel + CHANNEL;
 
+  const preActive = PRE.on && stockLeft !== null && stockLeft <= 0;
   if (stockLeft === null)    $('stocknum').textContent = t().loading;
+  else if (preActive)        $('stocknum').textContent = t().preShort;
   else if (stockLeft <= 0)   $('stocknum').textContent = t().soldOut;
   else                       $('stocknum').textContent = stockLeft.toLocaleString() + ' ' + t().unit;
+
+  $('prebox').hidden = !preActive;
+  $('prenote').textContent = PRE.note;
+  if (preActive && !submitBtn.disabled) submitBtn.textContent = t().preBtn;
 
   if (submitBtn.disabled && stockLeft !== null && stockLeft <= 0)
     submitBtn.textContent = t().soldOutBtn;
@@ -459,7 +485,7 @@ function refreshTotal(){
   qtyEl.value = n;
   $('total').textContent = (n * UNIT_PRICE).toLocaleString() + ' ฿';
   $('minus').disabled = n <= 1;
-  $('plus').disabled  = n >= 100 || (stockLeft !== null && n >= stockLeft);
+  $('plus').disabled  = n >= 100 || (!PRE.on && stockLeft !== null && n >= stockLeft);
 }
 qtyEl.addEventListener('input', refreshTotal);
 qtyEl.addEventListener('blur',  refreshTotal);
@@ -472,15 +498,17 @@ refreshTotal();
 /* ---------- สต๊อกคงเหลือ ---------- */
 (async function loadStock(){
   try{
-    const r = await fetch(SUPABASE_URL + '/rest/v1/products?id=eq.1&select=stock_quantity',
+    const r = await fetch(SUPABASE_URL + '/rest/v1/products?id=eq.1&select=stock_quantity,preorder_enabled,preorder_note',
                           { headers: HEADERS });
     if(!r.ok) throw 0;
     const rows = await r.json();
     if(!rows.length) throw 0;
 
     stockLeft = rows[0].stock_quantity;
+    PRE.on   = !!rows[0].preorder_enabled;
+    PRE.note = rows[0].preorder_note || '';
     if(stockLeft <= LOW_STOCK) $('stockline').classList.add('low');
-    if(stockLeft <= 0){
+    if(stockLeft <= 0 && !PRE.on){
       submitBtn.disabled = true;
       submitBtn.textContent = t().soldOutBtn;
     }
@@ -564,6 +592,8 @@ function showDone(data, name, n, restored){
     row(t().rTotal, Number(data.total_price).toLocaleString() + ' ฿');
   $('payamount').textContent = Number(data.total_price).toLocaleString() + ' ฿';
   $('payorderid').textContent = ' #' + data.order_id;
+  $('predone').hidden = !data.is_preorder;
+  $('prenote2').textContent = data.preorder_note || '';
   $('done').classList.add('show');
   window.scrollTo({top:0, behavior: restored ? 'auto' : 'smooth'});
 }
@@ -596,7 +626,8 @@ const ORDER_TTL = 24 * 60 * 60 * 1000;
 function saveOrder(data, name, n){
   try {
     localStorage.setItem(ORDER_KEY, JSON.stringify({
-      id: data.order_id, total: data.total_price, qty: n, name: name, ts: Date.now()
+      id: data.order_id, total: data.total_price, qty: n, name: name, ts: Date.now(),
+      pre: !!data.is_preorder, preNote: data.preorder_note || ''
     }));
   } catch(e) {}
 }
@@ -612,7 +643,8 @@ document.getElementById('neworder').addEventListener('click', function(){
   var o = null;
   try { o = JSON.parse(localStorage.getItem(ORDER_KEY) || 'null'); } catch(e) {}
   if (!o || !o.id || !o.ts || (Date.now() - o.ts) > ORDER_TTL) { clearOrder(); return; }
-  showDone({ order_id: o.id, total_price: o.total }, o.name || '', o.qty || 1, true);
+  showDone({ order_id: o.id, total_price: o.total, is_preorder: o.pre,
+             preorder_note: o.preNote }, o.name || '', o.qty || 1, true);
 })();
 </script>
 </body>
