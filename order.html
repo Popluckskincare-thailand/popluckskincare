@@ -184,6 +184,20 @@ footer{text-align:center;margin-top:26px;font-size:.78rem;color:var(--ink-faint)
 .nextstep b{font-family:"IBM Plex Mono",ui-monospace,monospace;color:var(--ink)}
 .payrow--name{flex-direction:column;align-items:flex-start;gap:3px}
 .payrow--name .payrow__v{text-align:left}
+
+/* ---------- แถบออร์เดอร์ที่ยังรอโอนเงิน ---------- */
+.pending{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
+  background:var(--gold-wash);color:var(--gold-ink);border:1px solid var(--gold);
+  border-radius:12px;padding:11px 14px;margin-bottom:18px;font-size:.86rem;
+  line-height:1.55;text-align:left}
+.pending__t{flex:1 1 180px}
+.pending button{border:1px solid var(--gold);background:transparent;color:var(--gold-ink);
+  font-family:inherit;font-size:.78rem;padding:5px 13px;border-radius:99px;
+  cursor:pointer;white-space:nowrap;flex:none}
+.pending button:hover{background:var(--gold);color:#241B12}
+/* แตะแถวเลขบัญชีตรงไหนก็คัดลอกได้ ไม่ต้องเล็งปุ่มเล็ก ๆ บนมือถือ */
+.payrow--acct{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.payrow--acct:active{background:var(--gold-wash)}
 </style>
 </head>
 <body>
@@ -277,6 +291,10 @@ footer{text-align:center;margin-top:26px;font-size:.78rem;color:var(--ink-faint)
     </form>
 
     <div class="done" id="done">
+      <div class="pending" id="pending" hidden>
+        <span class="pending__t"><span lang="th">ออร์เดอร์นี้ยังรอการโอนเงิน รายละเอียดบัญชีอยู่ด้านล่าง</span><span lang="en">This order is waiting for payment — bank details are below.</span><span lang="zh">此订单待付款，账户信息见下方。</span></span>
+        <button type="button" id="neworder"><span lang="th">สั่งรายการใหม่</span><span lang="en">New order</span><span lang="zh">重新下单</span></button>
+      </div>
       <div class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></div>
       <h2><span lang="th">รับออร์เดอร์เรียบร้อย</span><span lang="en">Order received</span><span lang="zh">订单已收到</span></h2>
       <p>
@@ -294,7 +312,7 @@ footer{text-align:center;margin-top:26px;font-size:.78rem;color:var(--ink-faint)
           <span class="payrow__v"><span lang="th">ธนาคารไทยพาณิชย์ (SCB)</span><span lang="en">Siam Commercial Bank (SCB)</span><span lang="zh">泰国 Siam Commercial Bank (SCB)</span></span>
         </div>
 
-        <div class="payrow">
+        <div class="payrow payrow--acct" id="acctrow">
           <span class="payrow__k"><span lang="th">เลขที่บัญชี</span><span lang="en">Account no.</span><span lang="zh">账号</span></span>
           <span class="payrow__v">
             <b class="acct">421-219176-4</b>
@@ -534,9 +552,11 @@ function showErr(text){
   return false;
 }
 
-function showDone(data, name, n){
+function showDone(data, name, n, restored){
   form.style.display = 'none';
   $('stockline').style.display = 'none';
+  $('pending').hidden = !restored;
+  if (!restored) saveOrder(data, name, n);
   $('recap').innerHTML =
     row(t().rOrder, '#' + data.order_id) +
     row(t().rName,  esc(name)) +
@@ -545,15 +565,15 @@ function showDone(data, name, n){
   $('payamount').textContent = Number(data.total_price).toLocaleString() + ' ฿';
   $('payorderid').textContent = ' #' + data.order_id;
   $('done').classList.add('show');
-  window.scrollTo({top:0, behavior:'smooth'});
+  window.scrollTo({top:0, behavior: restored ? 'auto' : 'smooth'});
 }
 const row = (k,v) => '<div><span>' + k + '</span><b>' + v + '</b></div>';
 const esc = s => s.replace(/[&<>"']/g, c =>
   ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 /* ปุ่มคัดลอกเลขบัญชี — ส่งเฉพาะตัวเลขไม่มีขีด แอปธนาคารถึงจะวางได้เลย */
-document.getElementById('copyacct').addEventListener('click', async function(){
-  var btn = this, before = btn.innerHTML;
+document.getElementById('acctrow').addEventListener('click', async function(){
+  var btn = document.getElementById('copyacct'), before = btn.innerHTML;
   try {
     await navigator.clipboard.writeText('4212191764');
   } catch(e) {
@@ -565,6 +585,35 @@ document.getElementById('copyacct').addEventListener('click', async function(){
   btn.innerHTML = '<span lang="th">คัดลอกแล้ว</span><span lang="en">Copied</span><span lang="zh">已复制</span>';
   setTimeout(function(){ btn.innerHTML = before; }, 1800);
 });
+
+/* ---------- จำออร์เดอร์ล่าสุดไว้ 24 ชม. ----------
+   ลูกค้าสลับไปแอปธนาคารแล้วกลับมา เบราว์เซอร์ในตัว LINE มักรีโหลดหน้าใหม่
+   ถ้าไม่เก็บไว้ เลขบัญชีกับเลขออร์เดอร์จะหายหมด ลูกค้าต้องทักมาถามซ้ำ
+   เก็บเฉพาะข้อมูลที่ต้องใช้โชว์ ไม่เก็บที่อยู่หรือเบอร์โทร              */
+const ORDER_KEY = 'poplk-order';
+const ORDER_TTL = 24 * 60 * 60 * 1000;
+
+function saveOrder(data, name, n){
+  try {
+    localStorage.setItem(ORDER_KEY, JSON.stringify({
+      id: data.order_id, total: data.total_price, qty: n, name: name, ts: Date.now()
+    }));
+  } catch(e) {}
+}
+
+function clearOrder(){ try { localStorage.removeItem(ORDER_KEY); } catch(e) {} }
+
+document.getElementById('neworder').addEventListener('click', function(){
+  clearOrder();
+  location.reload();
+});
+
+(function resumeOrder(){
+  var o = null;
+  try { o = JSON.parse(localStorage.getItem(ORDER_KEY) || 'null'); } catch(e) {}
+  if (!o || !o.id || !o.ts || (Date.now() - o.ts) > ORDER_TTL) { clearOrder(); return; }
+  showDone({ order_id: o.id, total_price: o.total }, o.name || '', o.qty || 1, true);
+})();
 </script>
 </body>
 </html>
