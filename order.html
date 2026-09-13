@@ -160,6 +160,30 @@ button.submit:disabled{background:var(--line);color:var(--ink-faint);cursor:not-
   background:var(--gold-wash);color:var(--gold-ink);text-decoration:none;
   font-weight:600;font-size:.95rem;border:1px solid var(--gold)}
 footer{text-align:center;margin-top:26px;font-size:.78rem;color:var(--ink-faint)}
+
+/* ---------- กล่องชำระเงิน ---------- */
+.pay{margin-top:18px;text-align:left;border:1px solid var(--gold);border-radius:14px;overflow:hidden}
+.pay__h{background:var(--gold-wash);color:var(--gold-ink);font-weight:600;font-size:.95rem;padding:11px 16px}
+.payrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  padding:10px 16px;border-top:1px solid var(--line);font-size:.93rem}
+.payrow__k{color:var(--ink-soft);white-space:nowrap;flex:none}
+.payrow__v{text-align:right}
+.acct{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;font-size:1.06rem;
+  letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.acctname{font-weight:500;line-height:1.5}
+.copybtn{margin-left:8px;border:1px solid var(--gold);background:transparent;color:var(--gold-ink);
+  font-family:inherit;font-size:.78rem;padding:4px 11px;border-radius:99px;cursor:pointer;white-space:nowrap}
+.copybtn:hover{background:var(--gold-wash)}
+.payrow--total{background:var(--butter)}
+.payrow--total .payrow__v{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:1.22rem;
+  color:var(--gold-ink);font-variant-numeric:tabular-nums}
+.warn{border-top:1px solid var(--line);background:var(--danger-wash);color:var(--danger);
+  padding:12px 16px;font-size:.86rem;line-height:1.6}
+.warn b{display:block;margin-bottom:3px}
+.nextstep{margin:0;border-top:1px solid var(--line);padding:12px 16px;font-size:.88rem;color:var(--ink-soft)}
+.nextstep b{font-family:"IBM Plex Mono",ui-monospace,monospace;color:var(--ink)}
+.payrow--name{flex-direction:column;align-items:flex-start;gap:3px}
+.payrow--name .payrow__v{text-align:left}
 </style>
 </head>
 <body>
@@ -256,15 +280,53 @@ footer{text-align:center;margin-top:26px;font-size:.78rem;color:var(--ink-faint)
       <div class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></div>
       <h2><span lang="th">รับออร์เดอร์เรียบร้อย</span><span lang="en">Order received</span><span lang="zh">订单已收到</span></h2>
       <p>
-        <span lang="th">ทีมงานจะติดต่อกลับเพื่อยืนยันการชำระเงิน</span>
-        <span lang="en">Our team will contact you to confirm payment.</span>
-        <span lang="zh">我们的团队将与您联系确认付款。</span>
+        <span lang="th">อีกขั้นเดียว — โอนเงินตามรายละเอียดด้านล่าง แล้วส่งสลิปให้เรา</span>
+        <span lang="en">One more step — transfer the amount below, then send us the slip.</span>
+        <span lang="zh">还差一步 — 请按下方信息转账，然后把凭证发给我们。</span>
       </p>
       <div class="recap" id="recap"></div>
+
+      <div class="pay">
+        <div class="pay__h"><span lang="th">ชำระเงินโดยโอนเข้าบัญชีธนาคาร</span><span lang="en">Pay by bank transfer</span><span lang="zh">银行转账付款</span></div>
+
+        <div class="payrow">
+          <span class="payrow__k"><span lang="th">ธนาคาร</span><span lang="en">Bank</span><span lang="zh">银行</span></span>
+          <span class="payrow__v"><span lang="th">ธนาคารไทยพาณิชย์ (SCB)</span><span lang="en">Siam Commercial Bank (SCB)</span><span lang="zh">泰国 Siam Commercial Bank (SCB)</span></span>
+        </div>
+
+        <div class="payrow">
+          <span class="payrow__k"><span lang="th">เลขที่บัญชี</span><span lang="en">Account no.</span><span lang="zh">账号</span></span>
+          <span class="payrow__v">
+            <b class="acct">421-219176-4</b>
+            <button type="button" class="copybtn" id="copyacct"><span lang="th">คัดลอก</span><span lang="en">Copy</span><span lang="zh">复制</span></button>
+          </span>
+        </div>
+
+        <div class="payrow payrow--name">
+          <span class="payrow__k"><span lang="th">ชื่อบัญชี</span><span lang="en">Account name</span><span lang="zh">账户名</span></span>
+          <span class="payrow__v acctname">บริษัท พบลักษณ์ สกินแคร์ (ประเทศไทย) จำกัด</span>
+        </div>
+
+        <div class="payrow payrow--total">
+          <span class="payrow__k"><span lang="th">ยอดที่ต้องโอน</span><span lang="en">Amount to transfer</span><span lang="zh">应转金额</span></span>
+          <b class="payrow__v" id="payamount">&mdash;</b>
+        </div>
+
+        <div class="warn">
+          <b><span lang="th">โอนเข้าบัญชีบริษัทเท่านั้น</span><span lang="en">Transfer to the company account only</span><span lang="zh">仅限转账至公司账户</span></b>
+          <span lang="th">ทางร้านไม่มีนโยบายให้โอนเข้าบัญชีบุคคลธรรมดา หากมีผู้แอบอ้างเป็นทางร้านแล้วให้เลขบัญชีอื่น กรุณาแจ้งเราทันที</span><span lang="en">We never ask you to transfer to a personal account. If anyone claiming to be us gives you a different account number, please tell us immediately.</span><span lang="zh">我们绝不会要求您转账至个人账户。若有人冒充本店提供其他账号，请立即告知我们。</span>
+        </div>
+
+        <p class="nextstep">
+          <span lang="th">โอนแล้วส่งสลิปมาที่ LINE พร้อมแจ้งเลขที่ออร์เดอร์</span><span lang="en">After transferring, send us the slip on LINE with your order number</span><span lang="zh">转账后请通过 LINE 发送转账凭证，并注明订单号</span>
+          <b id="payorderid"></b>
+        </p>
+      </div>
+
       <a class="linebtn" href="https://lin.ee/VAJR0cU" target="_blank" rel="noopener">
-        <span lang="th">ทักแชท LINE เพื่อยืนยัน</span>
-        <span lang="en">Confirm with us on LINE</span>
-        <span lang="zh">通过 LINE 与我们确认</span>
+        <span lang="th">ส่งสลิปทาง LINE</span>
+        <span lang="en">Send slip on LINE</span>
+        <span lang="zh">通过 LINE 发送凭证</span>
       </a>
     </div>
 
@@ -480,12 +542,29 @@ function showDone(data, name, n){
     row(t().rName,  esc(name)) +
     row(t().rQty,   n + ' ' + (LANG === 'th' ? 'ชิ้น' : LANG === 'zh' ? '瓶' : 'pcs')) +
     row(t().rTotal, Number(data.total_price).toLocaleString() + ' ฿');
+  $('payamount').textContent = Number(data.total_price).toLocaleString() + ' ฿';
+  $('payorderid').textContent = ' #' + data.order_id;
   $('done').classList.add('show');
   window.scrollTo({top:0, behavior:'smooth'});
 }
 const row = (k,v) => '<div><span>' + k + '</span><b>' + v + '</b></div>';
 const esc = s => s.replace(/[&<>"']/g, c =>
   ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* ปุ่มคัดลอกเลขบัญชี — ส่งเฉพาะตัวเลขไม่มีขีด แอปธนาคารถึงจะวางได้เลย */
+document.getElementById('copyacct').addEventListener('click', async function(){
+  var btn = this, before = btn.innerHTML;
+  try {
+    await navigator.clipboard.writeText('4212191764');
+  } catch(e) {
+    var ta = document.createElement('textarea');
+    ta.value = '4212191764'; document.body.appendChild(ta);
+    ta.select(); try { document.execCommand('copy'); } catch(e2) {}
+    document.body.removeChild(ta);
+  }
+  btn.innerHTML = '<span lang="th">คัดลอกแล้ว</span><span lang="en">Copied</span><span lang="zh">已复制</span>';
+  setTimeout(function(){ btn.innerHTML = before; }, 1800);
+});
 </script>
 </body>
 </html>
