@@ -1,13 +1,15 @@
 # ===================================================================
 #  ปลุก Supabase ไม่ให้ถูกพัก
 #
-#  แพ็กเกจฟรีพักโปรเจกต์ที่ไม่มีการใช้งานเกิน 7 วัน
-#  พอถูกพัก หน้าสั่งซื้อกับแอปหลังบ้านล่มทันที ลูกค้าเจอ error เงียบ ๆ
-#  งานนี้ยิงคำขอเบา ๆ ทุก 3 วัน ให้นับว่ายังมีการใช้งานอยู่
+#  แก้สองชั้น:
+#  1) Supabase แพ็กเกจฟรีพักโปรเจกต์ที่ไม่ใช้งานเกิน 7 วัน
+#     พอพัก หน้าสั่งซื้อกับหลังบ้านล่ม ลูกค้าเจอ error เงียบ ๆ
+#  2) GitHub ปิด scheduled workflow อัตโนมัติถ้า repo เงียบเกิน 60 วัน
+#     งานนี้จึง commit ไฟล์บันทึกเวลากลับเข้า repo ทุกครั้ง
+#     = repo มีความเคลื่อนไหวตลอด ตารางเวลาไม่ถูกปิด
 #
-#  ไม่ต้องตั้ง secret ใด ๆ - คีย์ด้านล่างเป็น publishable key
-#  ที่เปิดเผยอยู่แล้วในหน้าสั่งซื้อ (order.html) และอ่านตาราง orders ไม่ได้
-#  เพราะ Row Level Security กันไว้ ตรวจสอบแล้วว่าได้ HTTP 401
+#  ไม่ต้องตั้ง secret - คีย์ด้านล่างเป็น publishable key ที่เปิดเผย
+#  อยู่แล้วในหน้าสั่งซื้อ และอ่านตาราง orders ไม่ได้เพราะ RLS กันไว้
 # ===================================================================
 name: ปลุก Supabase
 
@@ -16,11 +18,17 @@ on:
     - cron: '0 3 */3 * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
       - name: ยิงคำขอไปที่ Supabase
+        id: ping
         env:
           URL: https://klgtxupwfsbyraoiyhhs.supabase.co
           KEY: sb_publishable_oucf4DJN_W_0aHYB3RoMvQ_64lkwFLe
@@ -32,11 +40,31 @@ jobs:
               -H "apikey: $KEY" -H "Authorization: Bearer $KEY" || echo 000)
             if [ "$code" = "200" ]; then
               echo "Supabase ตื่นอยู่ (ครั้งที่ $attempt)"
+              echo "status=ok" >> "$GITHUB_OUTPUT"
               exit 0
             fi
             echo "ครั้งที่ $attempt ได้ HTTP $code - รออีก 30 วินาที"
             sleep 30
           done
+          echo "status=fail" >> "$GITHUB_OUTPUT"
           echo "::error::ปลุกไม่ขึ้น ครั้งสุดท้ายได้ HTTP $code"
           cat /tmp/out.txt || true
           exit 1
+
+      # ทำให้ repo มีความเคลื่อนไหว GitHub จะได้ไม่ปิดตารางเวลาทิ้ง
+      - name: บันทึกเวลาที่ปลุกสำเร็จ
+        if: steps.ping.outputs.status == 'ok'
+        run: |
+          mkdir -p .github
+          {
+            echo "ปลุก Supabase ครั้งล่าสุดสำเร็จเมื่อ"
+            TZ=Asia/Bangkok date '+%Y-%m-%d %H:%M:%S (เวลาไทย)'
+            echo ""
+            echo "ไฟล์นี้อัปเดตอัตโนมัติ ไม่ต้องแก้เอง"
+            echo "มีไว้ให้ repo มีความเคลื่อนไหว GitHub จะได้ไม่ปิดตารางเวลาทิ้ง"
+          } > .github/supabase-heartbeat.txt
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/supabase-heartbeat.txt
+          git diff --staged --quiet || git commit -m "ปลุก Supabase สำเร็จ [skip ci]"
+          git push
