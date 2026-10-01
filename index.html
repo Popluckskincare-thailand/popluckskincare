@@ -206,6 +206,8 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
 .btn--gold:hover{transform:translateY(-2px);box-shadow:0 16px 32px -12px rgba(198,145,70,.9)}
 .btn--ghost{border-color:var(--line);color:var(--ink-soft);background:transparent;font-weight:500;font-size:.94rem;padding:14px 22px}
 .btn--ghost:hover{border-color:var(--gold);color:var(--gold-ink)}
+.btn--facebook{background:#1877F2;color:#fff;box-shadow:0 10px 26px -12px rgba(24,119,242,.75)}
+.btn--facebook:hover{transform:translateY(-2px);background:#0d65d9;box-shadow:0 16px 32px -12px rgba(24,119,242,.85)}
 .btn--xl{font-size:1.1rem;padding:20px 34px;width:100%;max-width:400px}
 .btn svg{width:19px;height:19px;flex:none}
 
@@ -374,6 +376,8 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
 .foot p{font-size:.8rem;color:var(--ink-soft)}
 
 .foot__reg{margin:4px 0 0;font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.04em;color:var(--ink-faint)}
+.foot__social{margin:16px 0 0!important}
+.foot__social .btn{font-size:.86rem;padding:12px 20px}
 
 /* ---------- wechat block (zh only) ---------- */
 .wechat{
@@ -429,11 +433,13 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
 .cta-pair>.btn{width:100%;max-width:400px}
 .cta-pair__alt{gap:8px}
 .cta-pair__alt svg{width:18px;height:18px;opacity:.75}
+.cta-pair .btn--facebook svg{opacity:1}
 .dock{gap:8px}
 .dock a{width:auto;flex:1 1 0;min-width:0}
 .dock .btn--gold{flex:1.6 1 0}
 .dock .dock__alt{padding:15px 14px}
 .dock .dock__alt svg{width:19px;height:19px}
+.dock .btn--facebook{padding:15px 14px}
 @media (max-width:360px){
   .dock .dock__alt span{display:none}
   .dock .dock__alt{flex:0 0 54px}
@@ -776,6 +782,10 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 5.6 2 10.05c0 3.98 3.57 7.32 8.39 7.95.33.07.77.22.88.5.1.26.07.66.03.92l-.14.85c-.04.25-.2.98.86.53s5.7-3.36 7.78-5.75C21.2 13.5 22 11.87 22 10.05 22 5.6 17.5 2 12 2Z"/></svg>
         <span lang="th">หรือทักไลน์สอบถามก่อน</span><span lang="en">Or ask us on LINE first</span><span lang="zh">或先用 LINE 咨询</span>
       </a>
+      <a class="btn btn--facebook cta-pair__alt" href="https://www.facebook.com/profile.php?id=61591908543418" target="_blank" rel="noopener" aria-label="Facebook Popluck.th">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V4a22 22 0 0 0-2.5-.1c-2.5 0-4.2 1.5-4.2 4.3V10H7.4v3h2.7v8h3.4Z"/></svg>
+        <span lang="th">ติดตาม Facebook: Popluck.th</span><span lang="en">Follow us on Facebook</span><span lang="zh">关注 Facebook：Popluck.th</span>
+      </a>
     </div>
     <!-- ▼ ช่อง WeChat — แสดงเฉพาะโหมดภาษาจีน แก้ 2 จุดเมื่อได้ข้อมูลจริง:
              1) แทน "待补充" ด้วยไอดี WeChat
@@ -806,7 +816,7 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
       <span lang="zh">泰国 FDA 备案号 27-1-6900025825</span>
     </p>
     <p class="foot__social">
-      <a href="https://www.facebook.com/profile.php?id=61591908543418" target="_blank" rel="noopener" aria-label="Facebook Popluck.th">
+      <a class="btn btn--facebook" href="https://www.facebook.com/profile.php?id=61591908543418" target="_blank" rel="noopener" aria-label="Facebook Popluck.th">
         <span lang="th">Facebook: Popluck.th</span><span lang="en">Facebook: Popluck.th</span><span lang="zh">Facebook：Popluck.th</span>
       </a>
     </p>
@@ -821,6 +831,10 @@ section[id],section[aria-labelledby]{scroll-margin-top:76px}
   <a class="btn btn--ghost dock__alt" href="https://lin.ee/VAJR0cU" target="_blank" rel="noopener" aria-label="LINE">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 5.6 2 10.05c0 3.98 3.57 7.32 8.39 7.95.33.07.77.22.88.5.1.26.07.66.03.92l-.14.85c-.04.25-.2.98.86.53s5.7-3.36 7.78-5.75C21.2 13.5 22 11.87 22 10.05 22 5.6 17.5 2 12 2Z"/></svg>
     <span lang="th">ทักไลน์</span><span lang="en">LINE</span><span lang="zh">咨询</span>
+  </a>
+  <a class="btn btn--facebook dock__alt" href="https://www.facebook.com/profile.php?id=61591908543418" target="_blank" rel="noopener" aria-label="Facebook Popluck.th">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V4a22 22 0 0 0-2.5-.1c-2.5 0-4.2 1.5-4.2 4.3V10H7.4v3h2.7v8h3.4Z"/></svg>
+    <span lang="th">Facebook</span><span lang="en">Facebook</span><span lang="zh">Facebook</span>
   </a>
 </div>
 
