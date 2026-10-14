@@ -3,11 +3,13 @@
 #
 #  แก้ 3 อย่าง:
 #  1) Supabase แพ็กเกจฟรีพักโปรเจกต์ที่ไม่ใช้งานเกิน 7 วัน
-#     พอพัก หน้าสั่งซื้อกับหลังบ้านล่ม ลูกค้าเจอ error เงียบ ๆ
-#  2) Streamlit Cloud พักแอปที่ไม่มีคนเข้าเกิน 7 วัน
-#     พอหลับ เปิดครั้งแรกต้องรอ wake up ~30 วินาที
+#  2) Streamlit Cloud พักแอปที่ไม่มีคนเข้าเกิน 7 วัน (หลับแล้วรอ wake up ~30 วินาที)
 #  3) GitHub ปิด scheduled workflow อัตโนมัติถ้า repo เงียบเกิน 60 วัน
-#     งานนี้จึง commit ไฟล์บันทึกเวลากลับเข้า repo ทุกครั้ง
+#     → จึง commit ไฟล์บันทึกเวลากลับเข้า repo ทุกครั้ง
+#
+#  ทำไมยิงทุกวัน ไม่ใช่ทุก 3 วัน: 10-13 ต.ค. 2026 ยิงพลาด 2 ครั้งติด (HTTP 000)
+#  ถ้ายิงทุก 3 วัน พลาดสองครั้งติด = ห่าง 6 วัน เฉียดฉิวเส้น 7 วัน
+#  ยิงทุกวันแปลว่าพลาดได้ 6 ครั้งติดก่อนจะมีปัญหา
 #
 #  คีย์ด้านล่างเป็น publishable key ที่เปิดเผยอยู่แล้วในหน้าสั่งซื้อ
 #  อ่านตาราง orders ไม่ได้เพราะ RLS กันไว้ จึงไม่ต้องตั้ง secret
@@ -16,7 +18,7 @@ name: ปลุกระบบ
 
 on:
   schedule:
-    - cron: '0 3 */3 * *'   # ทุก 3 วัน ~10:00 น. เวลาไทย (อยู่ในกรอบ 7 วันของทั้งคู่)
+    - cron: '0 3 * * *'   # ทุกวัน ~10:00 น. เวลาไทย
   workflow_dispatch:
 
 permissions:
@@ -38,17 +40,17 @@ jobs:
           for attempt in 1 2 3 4 5 6; do
             code=$(curl -s -o /tmp/out.txt -w '%{http_code}' -m 30 \
               "$URL/rest/v1/products?select=id&limit=1" \
-              -H "apikey: $KEY" -H "Authorization: Bearer $KEY" || echo 000)
+              -H "apikey: $KEY" -H "Authorization: Bearer $KEY" || true)
             if [ "$code" = "200" ]; then
               echo "Supabase ตื่นอยู่ (ครั้งที่ $attempt)"
               echo "status=ok" >> "$GITHUB_OUTPUT"
               exit 0
             fi
-            echo "ครั้งที่ $attempt ได้ HTTP $code - รออีก 30 วินาที"
+            echo "ครั้งที่ $attempt ได้ HTTP ${code:-000} - รออีก 30 วินาที"
             sleep 30
           done
           echo "status=fail" >> "$GITHUB_OUTPUT"
-          echo "::error::ปลุก Supabase ไม่ขึ้น ครั้งสุดท้ายได้ HTTP $code"
+          echo "::error::ปลุก Supabase ไม่ขึ้น ครั้งสุดท้ายได้ HTTP ${code:-000} (000 = ต่อไม่ติดเลย)"
           cat /tmp/out.txt || true
           exit 1
 
@@ -60,17 +62,16 @@ jobs:
           APP: https://popluck-crm-ldptkkmdnrrn8uhecfivvq.streamlit.app
         run: |
           for attempt in 1 2 3; do
-            code=$(curl -sL -o /dev/null -w '%{http_code}' -m 60 \
-              -A "keep-alive-bot" "$APP" || echo 000)
-            case "$code" in
+            code=$(curl -sL -o /dev/null -w '%{http_code}' -m 60 -A "keep-alive-bot" "$APP" || true)
+            case "${code:-000}" in
               2*|3*)
                 echo "แอปหลังบ้านตื่นอยู่ (HTTP $code, ครั้งที่ $attempt)"
                 exit 0 ;;
             esac
-            echo "ครั้งที่ $attempt ได้ HTTP $code - รออีก 20 วินาที"
+            echo "ครั้งที่ $attempt ได้ HTTP ${code:-000} - รออีก 20 วินาที"
             sleep 20
           done
-          echo "::warning::ปลุกแอป Streamlit ไม่ขึ้น ครั้งสุดท้ายได้ HTTP $code"
+          echo "::warning::ปลุกแอป Streamlit ไม่ขึ้น ครั้งสุดท้ายได้ HTTP ${code:-000}"
 
       # ทำให้ repo มีความเคลื่อนไหว GitHub จะได้ไม่ปิดตารางเวลาทิ้ง
       - name: บันทึกเวลาที่ปลุกสำเร็จ
